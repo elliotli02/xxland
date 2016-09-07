@@ -1,0 +1,455 @@
+body, h1, p {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	color: #ffffff;
+}
+
+h2 {
+	color: #339933;
+}
+
+p {
+	line-height: 2em;
+}
+
+p.hl {
+	font-size: 1.25em;
+	color: #ffffff;
+}
+
+div#header, div#main, div#menu, div#footer {
+	padding: 2px;
+	border-radius: 5px;         /* CSS3 */
+	border: 1px green solid;     /* 枠線の装飾 */
+}
+
+div#header {
+	background-color: #339933;
+	-moz-border-radius: 2px;    /* 古いFirefox */
+	-webkit-border-radius: 2px; /* 古いSafari,Chrome */
+}
+
+div#content {
+	background-color: #000000;
+	width: 100%;
+	overflow: hidden;
+}
+
+
+div#container{
+	background-color: #ff0000;
+
+	width: 100%;
+	float: right;
+	margin-left: -206px;
+	vertical-align:top;
+}
+
+div#main {
+	background-color: #99cc33;
+/* 	height: auto; */
+/* 	position: relative; */
+	height:840px;
+	margin: 0 0 0 206px;
+	padding: 0px 0;
+	vertical-align:top;
+
+}
+
+div#menu {
+	color: #339933;
+	background-color: #99cc33;
+	width: 200px;
+	float: left;
+}
+
+div#menu a:link {
+	color: #000000;
+}
+
+div#menu a:visited {
+	color: #ff0000;
+}
+
+div#menu a:hover {
+	color: #339933;
+}
+
+div#menu li {
+	line-height: 2em;
+}
+
+div#footer {
+	color: #ffffff;
+	background-color: #339933;
+}
+/* .fixed_height { height: 600px; } */
+
+
+/* .dataTables_wrapper { */
+/*     position: relative; */
+/*     clear: both; */
+/*     width: auto; */
+/*     min-height : 700 px; */
+/*     margin-left: 0px; */
+/*     border-bottom: 1px solid black; */
+/*     border-top: 1px solid black; */
+/*     border-left: 1px solid black; */
+/*     border-right: 1px solid black; */
+/*     background-color: #9D9C9D; */
+/*     zoom: 1; */
+/* } */
+/* =======================================menu==================================================== */
+
+@font-face {
+  font-family: 'typicons';
+  src: url('../font-face/typicons.eot');
+  src: url('../font-face/typicons.eot?#iefix') format('embedded-opentype'),
+       url('../font-face/typicons.woff') format('woff'),
+       url('../font-face/typicons.ttf') format('truetype'),
+       url('../font-face/typicons.svg#typicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#accordion{
+  list-style: none;
+  width: 100%;
+  font-size: 12px;
+  line-height: 1;
+  background-color: #add8e6;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,transparent 75%, transparent);
+  -moz-background-size: 1px 1px;
+  -webkit-background-size: 1px 1px;
+  -o-background-size: 1px 1px;
+  -ms-background-size: 1px 1px;
+  background-size: 1px 1px;
+  margin: 0;
+  padding: 0;
+  border-top: 5px solid #1b4958;
+  border-bottom: 5px solid #1b4958;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+}
+#accordion > li{
+  padding: 0;
+  border-right: 1px solid #3a9fc0;
+  border-left: 1px solid #3a9fc0;
+}
+
+/* カテゴリー */
+#accordion li a{
+  display: block;
+  position:relative;
+  color: #333;
+  text-decoration:none;
+  text-shadow: 0 1px 1px rgba(255,255,255,.7);
+  padding: 5px 20px;
+  border-bottom: 1px solid #79bfd6;
+  border-top: 1px solid #eef7fa;
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  transition: .3s;
+}
+#accordion > li:first-child > a{
+  border-top: 0px;
+}
+/* カテゴリーアイコン */
+#accordion > li a:before {
+  position: absolute;
+  top: 60%;
+  left: 6px;
+  font: 12px/100% 'Typicons';
+  content: "\e116";
+  color: #000000;
+  margin-top: -10px;
+  text-shadow: 1px 1px 0px rgba(255,255,255,.7);
+}
+
+#accordion li a:hover{
+  color: #1b4958;
+  background: rgba(0,0,0,.1);
+  border-top-color: #c7e4ee;
+}
+.arrow{
+  position:absolute;
+  top:55%;
+  right: 10px;
+  width: 3px;
+  height: 13px;
+  line-height: 1;
+  text-shadow: 0 -1px 0px rgba(0,0,0,.3);
+  margin-top: -8px;
+  color: #d4ebf2;
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  transition: .3s;
+}
+/* カテゴリー展開前 */
+.arrow:before{
+  font: 12px 'Typicons';
+  content: "\e049";
+}
+#accordion li > a:hover .arrow{
+  color: #2f7f99;
+}
+.rotate {
+  color:#2f7f99;
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#accordion li ul {
+  list-style: none;
+  background: #e1f1f6;
+  margin: 0;
+  padding-left: 0px;
+}
+/* サブカテゴリー */
+#accordion li ul li a{
+  position:relative;
+  background: none;
+  line-height: 1;
+  padding: 5px 20px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #a0d2e2;
+}
+/* サブカテゴリーアイコン */
+#accordion li ul li a:before {
+  position: absolute;
+  top: 55%;
+  left:12px;
+  content: "\e0b2";
+  font:12px/100% 'Typicons';
+  color: #2f7f99;
+  margin-top: -7px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.5);
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  transition: .3s;
+}
+#accordion li ul li:first-child a{
+  border-top: 0px;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.5) inset;
+}
+#accordion li ul li:last-child a{
+  border-bottom: 1px solid #5fb3ce;
+}
+#accordion li ul li a:hover{
+  background: #d4ebf2;
+  border-top-color: #eef7fa;
+}
+
+/* =======================================TAB==================================================== */
+/* -------------------------- */
+/* リストを横方向に並べる装飾 */
+/* -------------------------- */
+ul.menulist {
+   margin: 0px;  /* リスト周囲の余白を削除 */
+   padding: 0px; /* リスト周囲の余白を削除 */
+}
+ul.menulist li {
+   list-style-type: none; /* 先頭記号を消す */
+   float: left;   /* リスト項目を横方向に並べる */
+   margin: 0px;   /* 各項目周囲の余白 */
+   padding: 0px;  /* 枠線と内容の距離をゼロに */
+   height: 25px;  /* ★タブの高さ */
+   font-size: 12px;
+}
+
+/* ---------------------------------------- */
+/* メニュー項目内のリンクをタブに見せる装飾 */
+/* ---------------------------------------- */
+ul.menulist li a {
+   text-decoration: none; /* 下線を消す */
+   display: block;        /* ブロックレベルとして表示 */
+   padding: 2px 0px;      /* ★内側の余白量 */
+   width: 120px;            /* ★タブの横幅 */
+/*    height: 105px;          ★十分な高さを指定しておく（※タブが2段組・3段組になったときのために数倍にしておくと良いかも） */
+   text-align: center;    /* ★ラベル(文字列)を中央寄せ */
+   font-weight: bold;     ★ラベル(文字列)を太字にする
+   background-color: #ffffcc;     /* ★タブの背景色 */
+   border: black solid 1px;       /* ★タブの枠線 */
+   border-top-left-radius: 5px;  /* ★タブの左上の角を丸くする */
+   border-top-right-radius: 5px; /* ★タブの右上の角を丸くする */
+  border-top: 5px solid #1b4958;
+   /* タブよりもタブページ側を上に重ねるための指定 */
+   position: relative;
+   z-index: 0;
+}
+
+/* -------------- */
+/* タブの配色(★) */
+/* -------------- */
+ul.menulist li#litab1  a { background-color: #79bfd6; color: #000000; border-color: #2f7f99; }
+ul.menulist li#litab2  a { background-color: #79bfd6; color: #000000; border-color: #2f7f99; }
+ul.menulist li#litab3  a { background-color: #79bfd6; color: #000000; border-color: #2f7f99; }
+ul.menulist li#litab4  a { background-color: #79bfd6; color: #000000; border-color: #2f7f99; }
+ul.menulist li#litab5  a { background-color: #79bfd6; color: #000000; border-color: #2f7f99; }
+
+/* -------------------- */
+/* 選択中タブの配色(★) */
+/* -------------------- */
+ul.menulist li#litab1  a.active { background-color: #ddd; color: #333; border-bottom: 1px solid  #008000; }
+ul.menulist li#litab2  a.active { background-color: #ddd; color: #333; border-bottom: 1px solid  #008000; }
+ul.menulist li#litab3  a.active { background-color: #ddd; color: #333; border-bottom: 1px solid  #008000; }
+ul.menulist li#litab4  a.active { background-color: #ddd; color: #333; border-bottom: 1px solid  #008000; }
+ul.menulist li#litab5  a.active { background-color: #ddd; color: #333; border-bottom: 1px solid  #008000; }
+
+
+/* ul.menulist li a.active{ */
+/* 	background:#ddd; */
+/* 	color:#333; */
+/* } */
+
+/* ---------------------------------- */
+/* マウスが載ったときのタブの配色(★) */
+/* ---------------------------------- */
+ul.menulist li#litab1  a:hover { background-color: #ddd; color: #333; }
+ul.menulist li#litab2  a:hover { background-color: #ddd; color: #333; }
+ul.menulist li#litab3  a:hover { background-color: #ddd; color: #333; }
+ul.menulist li#litab4  a:hover { background-color: #ddd; color: #333; }
+ul.menulist li#litab5  a:hover { background-color: #ddd; color: #333; }
+
+
+div.box {
+   clear: left;          /* 回り込みを解除 */
+   height: 100px;        /* ★高さを指定*/
+   padding: 2px;       /* ★内側の余白量 */
+   background-color: #ffcccc;  /* ★背景色 */
+   border: solid #00ff001px; /* ★枠線 */
+   position: relative;   /* z-indexを指定するために必要 */
+   z-index: 10;          /* 他の要素より前面に表示させる */
+     border-top:solid 3px #800000;
+
+/* 	border-top-left-radius: 10px;     左上 */
+	border-top-right-radius: 5px;    /* 右上 */
+	border-bottom-left-radius: 5px;  /* 左下 */
+	border-bottom-right-radius: 5px; /
+}
+
+ul.menulist li a {
+   height: 16px; /* ★十分な高さを指定しておく（※タブが2段組・3段組になったときのために数倍にしておくと良いかも） */
+}
+
+.footerBtnCss{
+/* 	background: -ms-linear-gradient(top, #ccccff, #000066); */
+/* 	background: -webkit-gradient(linear, left top, left bottom, from(#0099CC),to(#006699)); */
+    background: #000099;
+    /* Webkit系 */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccccff), to(#000066));
+    /* Mozilla系 */
+    background: -moz-linear-gradient(top, #ccccff, #000066);
+    /* IE10+ */
+    background: -ms-linear-gradient(top, #ccccff, #000066);
+    /* IE8-9 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccccff', endColorstr='#000066', GradientType=0)";
+	border: 2px solid #FFF;
+	color: #FFF;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-box-shadow: 1px 1px 1px rgba(000, 000, 000, 0.3);
+	-webkit-box-shadow: 1px 1px 1px rgba(000, 000, 000, 0.3);
+	text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+	width: 107px;
+		height: 30px;
+	padding: 2px 0;
+		 font-size:12px;
+}
+
+fieldset {
+ font-size:12px;
+margin-top: 5px;
+padding-left: 4px;
+padding-top: 5px;
+/* width: 100%; */
+/* padding: 0 1px 1px; */
+border: 2px #c0c0c0groove;
+}
+
+.text{
+	border:1px solid #777;
+	width:200px;
+	height: 15px;
+	padding-left: 2px;
+	color: #000;
+	background: #fff;
+	border-radius: 3px;
+	filter:progid:DXImageTransform.Microsoft.gradient
+        (startColorstr=#ffeeeeee,endColorstr=#ffffffff);
+	zoom: 1;
+
+}
+.datatableCss {
+padding-left:10px;
+}
+.datatableCss {
+  width: auto;
+  border-spacing: 0;
+  font-size:14px;
+}
+.datatableCss th {
+  color: #fff;
+  padding: 2px 15px;
+  background: #258;
+  background:-moz-linear-gradient(rgba(34,85,136,0.7), rgba(34,85,136,0.9) 50%);
+  background:-webkit-gradient(linear, 100% 0%, 100% 50%, from(rgba(34,85,136,0.7)), to(rgba(34,85,136,0.9)));
+  font-weight: bold;
+  border-left:1px solid #258;
+  border-top:1px solid #258;
+  border-bottom:1px solid #258;
+  line-height: 120%;
+  text-align: center;
+  text-shadow:0 -1px 0 rgba(34,85,136,0.9);
+  box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+}
+.datatableCss th:first-child {
+  border-radius: 5px 0 0 0;
+}
+.datatableCss th:last-child {
+  border-radius:0 5px 0 0;
+  border-right:1px solid #258;
+  box-shadow: 2px 2px 1px rgba(0,0,0,0.1),0px 1px 1px rgba(255,255,255,0.3) inset;
+}
+.datatableCss tr td {
+  padding: 2px 8px;
+  border-bottom: 1px solid #84b2e0;
+  border-left: 1px solid #84b2e0;
+  text-align: center;
+}
+.datatableCss tr td:last-child {
+  border-right: 1px solid #84b2e0;
+  box-shadow: 2px 2px 1px rgba(0,0,0,0.1);
+}
+.datatableCss tr {
+  background: #fff;
+}
+.datatableCss tr:nth-child(2n+1) {
+  background: #f1f6fc;
+}
+.datatableCss tr:last-child td {
+  box-shadow: 2px 2px 1px rgba(0,0,0,0.1);
+}
+.datatableCss tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
+}
+.datatableCss tr:last-child td:last-child {
+  border-radius: 0 0 5px 0;
+}
+.datatableCss tr:hover {
+background: #bbd4ee;
+cursor:pointer;
+
+}

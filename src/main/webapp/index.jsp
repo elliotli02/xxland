@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>springmvc-spring-mybatis-jquery</title>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="Content-Type" content="text/json; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="jquery,jquery,jquery,jquery,jquery">
+<meta http-equiv="description" content="jquery,jquery,jquery,jquery,jquery">
+<link rel="stylesheet" type="text/css" href="common/css/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="common/widget/jquery/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="common/css/demo.css">
+<link rel="stylesheet" type="text/css" href="common/css/login.css">
+<script type="text/javascript" src="common/js/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="common/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="common/js/validater.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<div class="center">
+		<div id="p" class="divLogin" title="ログイン">
+			<form id="login_form" class="login-form" >
+				<table >
+					<tr>
+						<td class= "lefttd"><p>ログイン名 :</p></td>
+						<td class= "righttd"><input type="text" class="text" name="code"/></td>
+					</tr>
+					<tr>
+						<td class= "lefttd"><p>パスワード :</p></td>
+						<td class= "righttd"><input type="password" class="text" name="password"/></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="centertd">
+						<input type="button" id="login_submit" value="ログイン"/>
+<!-- 						<a id="login_submit">ログイン</a> -->
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#login_submit").button();
+		});
+
+		$('#login_form').submit(function(event){
+ 			event.preventDefault();
+			 $.ajax({
+				type : "GET",
+				url : "login/login.do", // リクエストURL
+				cache : false,
+					data : $(this).serialize(),
+					timeout: 10000,
+				success : function(data, status, xhr) {
+					alert("success");
+// 					alert(data);
+// 					var jsonData = eval('(' + data + ')');
+// 						if (data != null && data != ''
+// 								&& jsonData.success == true) {
+							window.location.href = 'menu.jsp';
+// 						} else {
+// 							$.messager.alert('提 示', jsonData.message);
+// 						}
+				},
+				error : function(XMLHttpRequest, status, errorThrown) {
+// 					alert("fail:" + XMLHttpRequest);
+// 					alert("status:" + status);
+				}
+			});
+		});
+
+		$('#login_submit').click(function(event) {
+			 $('#login_form').submit();
+		});
+
+		$("body").keydown(function() {
+			if (event.keyCode == "13") {//回车提交
+				 $('#login_form').submit();
+			}
+		});
+
+	</script>
+</body>
+</html>

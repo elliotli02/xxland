@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta charset="UTF-8">
+<script type="text/javascript" src="../../common/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../common/js/jquery.dataTables.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="common/css/demo.css"> -->
+<link rel="stylesheet" type="text/css" href="../../common/css/main.css">
+<link rel="stylesheet" type="text/css" href="../../common/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="../../common/css/jquery-ui-1.10.4.custom.css">
+<!-- <link rel="stylesheet" type="text/css" href="common/css/font-face/typicons.css"> -->
+
+
+<script type="text/javascript">
+
+$(function() {
+   $("#accordion li ul").hide();
+   $("#active").show();
+   $("#accordion > li > a").click(function(){
+       var click = $("+ul",this);
+       click.slideDown();
+       $("#accordion ul").not(click).slideUp();
+       $(".arrow").removeClass("rotate");
+       $("> .arrow",this).addClass("rotate");
+       return false;
+   });
+   $(function(){
+		$('.tabbox:first').show();
+		$('#tab li:first').addClass('active');
+		$('#tab li').click(function() {
+			$('#tab li').removeClass('active');
+			$(this).addClass('active');
+			$('.tabbox').hide();
+			$($(this).find('a').attr('href')).fadeIn();
+			return false;
+		});
+	});
+//    $('#menulist > ul').tabs({ fx: { height: 'show' , opacity: 'show' , duration: 'fast' } });
+
+//    $("#menulist li").on("click","a",function(){
+// 	   $("#tab1").hide();
+// 	   $("#tab2").hide();
+// 	   $("#tab3").hide();
+// 	   $("#tab4").hide();
+// 	   $("#tab5").hide();
+
+// 	   var $a = $("#menulist li a");
+// 	   alert($a.attr("href"));
+
+
+//     alert($(this).find("a").text());
+// // 	   alert('1: '+event.isDefaultPrevented());
+
+
+// // 	   alert('2: '+event.isDefaultPrevented());
+// // 	   alert(this.href);
+// // // 	   event.preventDefault();
+
+
+// // 		alert($(this).text());
+// 	});
+
+
+	$(document).ready(function() {
+		$('#example').dataTable({
+		    // 大量データ利用時、「処理中」メッセージを表示するかを設定
+		      bProcessing: true,
+		    // 初期表示の行数設定
+		      iDisplayLength: 15,
+		    // ページングボタンの制御
+		    // two_button:進むと戻る
+		    // full_numbers:全ボタン表示
+		      sPaginationType: "full_numbers",
+// 		      sPaginationType: "two_button",
+		    // ソート行を強調（cssクラスを指定）するかを設定
+		      bSortClasses: false,
+		    //検索（フィルタ）を表示するかを設定
+		      bFilter:false,
+		    //画面の表示件数を選択可能かを設定
+		      bLengthChange:false,
+		    //jQuery-UIの利用設定
+		      bJQueryUI:false,
+		      bInfo:true,
+// 		      scrollY:        '50vh',
+// 		        scrollCollapse: true,
+// 		        paging:         false,
+		      "fnDrawCallback" : function(oSettings) {
+
+		          var total_count = oSettings.fnRecordsTotal();
+		              var columns_in_row = $(this).children('thead').children('tr').children('th').length;
+		              var show_num = oSettings._iDisplayLength;
+		              var tr_count = $(this).children('tbody').children('tr').length;
+		              var missing = show_num - tr_count;
+		              if (show_num < total_count && missing > 0){
+		                for(var i = 0; i < missing; i++){
+		                  $(this).append('<tr "><td colspan="' + columns_in_row + '">&nbsp;</td></tr>');
+		                }
+		              }
+		              if (show_num > total_count) {
+		                for(var i = 0; i < (total_count - tr_count); i++) {
+		                  $(this).append('<tr "><td colspan="' + columns_in_row + '">&nbsp;</td></tr>');
+		                }
+		              }
+
+		       },
+		      "oLanguage" : {
+		          "sProcessing":   "処理中...",
+		          "sLengthMenu":   "_MENU_ 件表示",
+		          "sZeroRecords":  "データはありません。",
+		          "sInfo":         "_START_件～_END_件を表示（全_TOTAL_ 件中）",
+		          "sInfoEmpty":    " 0 件中 0 から 0 まで表示",
+		          "sInfoFiltered": "（全 _MAX_ 件より抽出）",
+		          "sInfoPostFix":  "",
+		          "sSearch":       "検索フィルター:",
+		          "sUrl":          "",
+		          "oPaginate": {
+		              "sFirst":    "先頭",
+		              "sPrevious": "前ページ",
+		              "sNext":     "次ページ",
+		              "sLast":     "最終"
+		          }
+// 				 "oPaginate": {
+// 		             "sFirst":    "",
+// 		             "sPrevious": "",
+// 		             "sNext":     "",
+// 		             "sLast":     ""
+// 		         }
+		       }
+		   });
+		$("#btnPrevious").click(function(){
+		       alert("btnPrevious");
+		       oSettings.oApi._fnPageChange( oSettings, "next" );
+	            fnCallbackDraw( oSettings );
+		   });
+		$("#btnNext").click(function(){
+		       alert("btnNext");
+		   });
+
+
+
+
+	});
+
+// 	 var total_count = oSettings.fnRecordsTotal();
+//      var columns_in_row = $(this).children('thead').children('tr').children('th').length;
+//      var show_num = oSettings._iDisplayLength;
+//      var tr_count = $(this).children('tbody').children('tr').length;
+//      var missing = show_num - tr_count;
+//      if (show_num < total_count && missing > 0){
+//        for(var i = 0; i < missing; i++){
+//          $(this).append('<tr class="space"><td colspan="' + columns_in_row + '">&nbsp;</td></tr>');
+//        }
+//      }
+//      if (show_num > total_count) {
+//        for(var i = 0; i < (total_count - tr_count); i++) {
+//          $(this).append('<tr class="space"><td colspan="' + columns_in_row + '">&nbsp;</td></tr>');
+//        }
+//      }
+
+	$("#accordion > li > a").click(function(){
+	       var click = $("+ul",this);
+	       click.slideDown();
+	       $("#accordion ul").not(click).slideUp();
+	       $(".arrow").removeClass("rotate");
+	       $("> .arrow",this).addClass("rotate");
+	       return false;
+	   });
+		$(function() {
+			$('#tabcontent > div').hide(); //初期では非表示
+			$('#menulist a').click(function() {
+				$('#tabcontent > div').hide().filter(this.hash).fadeIn(); //アンカー要素を表示
+				$('#menulist a').removeClass('active');
+				$(this).addClass('active');
+				return false; //いれてないとアンカーリンクになる
+			}).filter(':eq(0)').click(); //最初の要素をクリックした状態に
+		});
+
+	});
+	function initPage() {
+		// 	alert("initPage");
+		// 	ChangeTab('tab1');
+	}
+	function ChangeTab(tabname) {
+		// 	    // タブメニュー実装
+		// 	    document.getElementById('tab1').style.display = 'none';
+		// 	    document.getElementById('tab2').style.display = 'none';
+		// 	    document.getElementById('tab3').style.display = 'none';
+		// 	    document.getElementById('tab4').style.display = 'none';
+		// 	    document.getElementById('tab5').style.display = 'none';
+		// 	    // タブメニュー実装
+		// 	    document.getElementById(tabname).style.display = 'block';
+		// 	    document.getElementById(tabname).s
+	}
+
+</script>
+</head>
+<body onload="initPage()" >
+	<div id="header">
+		<p class="hl">xxland管理管理システム</p>
+	</div>
+	<div id="content">
+
+		<div id="container">
+			<div id="main">
+				<ul id="menulist" class="menulist">
+					<li id="litab1"><a href="#tab1">視力</a></li>
+					<li id="litab2"><a href="#tab2">知識</a></li>
+					<li id="litab3"><a href="#tab3">言語</a></li>
+					<li id="litab4"><a href="#tab4">聴力</a></li>
+				</ul>
+				<div id="tabcontent">
+					<div id="tab1" class="box">
+
+						<FIELDSET>
+							<LEGEND>検索条件</LEGEND>
+
+<!-- 							<table border=1> -->
+							<table>
+								<tr>
+									<td width="75px">世界キー</td>
+									<td width="230px">：&ensp;<input type="text" class="text"
+										name="userId" /></td>
+
+								</tr>
+
+							</table>
+						</FIELDSET>
+<FIELDSET>
+						<table id="example" class="datatableCss">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>列１</th>
+									<th>列２</th>
+									<th>列３</th>
+									<th>列４</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>１行目ー１</td>
+									<td>１行目ー２</td>
+									<td>１行目ー３</td>
+									<td>１行目ー４</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>２行目ー１</td>
+									<td>２行目ー２</td>
+									<td>２行目ー３</td>
+									<td>２行目ー４</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>３行目ー１</td>
+									<td>３行目ー２</td>
+									<td>３行目ー３</td>
+									<td>３行目ー４</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>４行目ー１</td>
+									<td>４行目ー２</td>
+									<td>４行目ー３</td>
+									<td>４行目ー４</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>５行目ー１</td>
+									<td>５行目ー２</td>
+									<td>５行目ー３</td>
+									<td>５行目ー４</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>６行目ー１</td>
+									<td>６行目ー２</td>
+									<td>６行目ー３</td>
+									<td>６行目ー４</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>７行目ー１</td>
+									<td>７行目ー２</td>
+									<td>７行目ー３</td>
+									<td>７行目ー４</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>８行目ー１</td>
+									<td>８行目ー２</td>
+									<td>８行目ー３</td>
+									<td>８行目ー４</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>９行目ー１</td>
+									<td>９行目ー２</td>
+									<td>９行目ー３</td>
+									<td>９行目ー４</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>１０行目ー１</td>
+									<td>１０行目ー２</td>
+									<td>１０行目ー３</td>
+									<td>１０行目ー４</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>１１行目ー１</td>
+									<td>１１行目ー２</td>
+									<td>１１行目ー３</td>
+									<td>１１行目ー４</td>
+								</tr>
+									<tr>
+									<td>10</td>
+									<td>１０行目ー１</td>
+									<td>１０行目ー２</td>
+									<td>１０行目ー３</td>
+									<td>１０行目ー４</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>１１行目ー１</td>
+									<td>１１行目ー２</td>
+									<td>１１行目ー３</td>
+									<td>１１行目ー４</td>
+								</tr>
+									<tr>
+									<td>10</td>
+									<td>１０行目ー１</td>
+									<td>１０行目ー２</td>
+									<td>１０行目ー３</td>
+									<td>１０行目ー４</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>１１行目ー１</td>
+									<td>１１行目ー２</td>
+									<td>１１行目ー３</td>
+									<td>１１行目ー４</td>
+								</tr>
+									<tr>
+									<td>10</td>
+									<td>１０行目ー１</td>
+									<td>１０行目ー２</td>
+									<td>１０行目ー３</td>
+									<td>１０行目ー４</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>１１行目ー１</td>
+									<td>１１行目ー２</td>
+									<td>１１行目ー３</td>
+									<td>１１行目ー４</td>
+								</tr>
+						</table>
+		</FIELDSET>
+						<FIELDSET>
+							<input type="button" class="footerBtnCss" id="btnSearch" value="検索" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btn1" value="btn1" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btnPrevious" value="前頁" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btnNext" value="次頁" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btn4" value="btn4" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btn" value="btn5" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btn6" value="btn6" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btnBack" value="戻る" onclick="search()">
+						</FIELDSET>
+					</div>
+					<div id="tab2" class="box">タブ2の内容です。画像やリンクを含めることもできます。</div>
+					<div id="tab3" class="box">タブ3の内容です。画像やリンクを含めることもできます。</div>
+					<div id="tab4" class="box">タブ4の内容です。画像やリンクを含めることもできます。</div>
+					<div id="tab5" class="box">タブ5の内容です。画像やリンクを含めることもできます。</div>
+				</div>
+			</div>
+		</div>
+		<div id="menu">
+			<ul id="accordion">
+				<li><a href="#">ユーザー管理<span class="arrow rotate"></span></a>
+					<ul>
+						<li><a href="#">ユーザー一覧</a></li>
+						<li><a href="#">サブカテゴリー２</a></li>
+						<li><a href="#">サブカテゴリー３</a></li>
+					</ul></li>
+				<li><a href="#">脳<span class="arrow"></span></a>
+					<ul id="active">
+						<li><a href="#">知識入力</a></li>
+						<li><a href="#">サブカテゴリー２</a></li>
+						<li><a href="#">サブカテゴリー３</a></li>
+						<li><a href="#">サブカテゴリー４</a></li>
+					</ul></li>
+				<li><a href="#">カテゴリー３<span class="arrow"></span></a>
+					<ul>
+						<li><a href="#">サブカテゴリー１</a></li>
+						<li><a href="#">サブカテゴリー２</a></li>
+						<li><a href="#">サブカテゴリー３</a></li>
+					</ul></li>
+				<li><a href="#">カテゴリー４<span class="arrow"></span></a>
+					<ul>
+						<li><a href="#">サブカテゴリー１</a></li>
+						<li><a href="#">サブカテゴリー２</a></li>
+						<li><a href="#">サブカテゴリー３</a></li>
+						<li><a href="#">サブカテゴリー４</a></li>
+						<li><a href="#">サブカテゴリー５</a></li>
+					</ul></li>
+				<li><a href="#">カテゴリー５<span class="arrow"></span></a>
+					<ul>
+						<li><a href="#">サブカテゴリー１</a></li>
+						<li><a href="#">サブカテゴリー２</a></li>
+						<li><a href="#">サブカテゴリー３</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+	<div id="footer">
+		<address>制作者：xxland</address>
+	</div>
+</body>
+</html>

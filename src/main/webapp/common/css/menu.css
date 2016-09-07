@@ -1,0 +1,268 @@
+body, h1, p {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	color: #ffffff;
+}
+
+h2 {
+	color: #339933;
+}
+
+p {
+	line-height: 2em;
+}
+
+p.hl {
+	font-size: 1.25em;
+	color: #ffffff;
+}
+
+div#header, div#main, div#menu, div#footer {
+	padding: 2px;
+	border-radius: 5px;         /* CSS3 */
+	border: 1px green solid;     /* 枠線の装飾 */
+}
+
+div#header {
+	background-color: #ddfbee;
+	-moz-border-radius: 2px;    /* 古いFirefox */
+	-webkit-border-radius: 2px; /* 古いSafari,Chrome */
+}
+
+div#content {
+	background-color: #eee;
+/* 	width: 100%; */
+	    width:100%;
+	overflow: hidden;
+ margin-left: auto;
+ margin-right: auto;
+
+}
+
+
+div#container{
+	background: #eee;
+/* position: absolute; */
+   width:300px;
+   margin: auto auto;
+    text-align:center;
+/* 	width: 100%; */
+/* /* 	float: right; */ */
+/* /* 	margin-left: -206px; */ */
+/* /* 	vertical-align:top; */ */
+}
+
+
+div#footer {
+	color: #ffffff;
+	background-color: #ddfbee;
+}
+/* .fixed_height { height: 600px; } */
+
+
+/* .dataTables_wrapper { */
+/*     position: relative; */
+/*     clear: both; */
+/*     width: auto; */
+/*     min-height : 700 px; */
+/*     margin-left: 0px; */
+/*     border-bottom: 1px solid black; */
+/*     border-top: 1px solid black; */
+/*     border-left: 1px solid black; */
+/*     border-right: 1px solid black; */
+/*     background-color: #9D9C9D; */
+/*     zoom: 1; */
+/* } */
+/* =======================================menu==================================================== */
+
+.menu-table{
+    width:200px;
+    text-align:center;
+/*     border:0; */
+    white-space: nowrap;
+/*     border: 2px #2b2b2b solid; */
+
+}
+.menu-table td {
+text-align: center;
+vertical-align: top;
+}
+
+fieldset {
+ width: 200px;
+/* 上・右 ・下・左　 の指定をします。 */
+/*  margin: 40px 20px 10px 70px; */
+/*  padding-top: 5%; */
+/*  padding-bottom: 6%; */
+/*  padding-left: 5%; */
+}
+
+
+.menuBtn {
+	width: 200px;
+	height: 30px;
+	border: 2px solid #15aeec;
+	background-color: #49c0f0;
+	background-image: -webkit-linear-gradient(top, #49c0f0, #2cafe3);
+	background-image: linear-gradient(to bottom, #49c0f0, #2cafe3);
+	border-radius: 4px;
+	color: #fff;
+	line-height: 25px;
+	-webkit-transition: none;
+	transition: none;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+.menuBtn:hover {
+	border:1px solid #1090c3;
+	background-color: #1ab0ec;
+	background-image: -webkit-linear-gradient(top, #1ab0ec, #1a92c2);
+	background-image: linear-gradient(to bottom, #1ab0ec, #1a92c2);
+}
+.menuBtn:active {
+	background: #1a92c2;
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .2);
+	color: #1679a1;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
+
+
+/* .menuBtn { */
+/* /* margin: 10px; */ */
+/* /* padding: 10px; */ */
+/*  width: 200px; */
+/*  height: 30px; */
+/* text-align: center; */
+/* font-size: 115%; */
+/* display: block; */
+/* padding:4px; */
+/* position:relative; */
+/* text-decoration:none; */
+/* font-weight: bold; */
+/* -webkit-border-radius: 5px; */
+/* -moz-border-radius: 5px; */
+/* -o-border-radius: 5px; */
+/* border-radius: 5px; */
+/* /*Other Browser*/ */
+/* background: #e2e2e2; */
+/* /*For Old WebKit*/ */
+/* background: -webkit-gradient( */
+/*     linear, left top, left bottom, */
+/*     color-stop(0.00, #ffffff), */
+/*     color-stop(1.00, #e2e2e2) */
+/* ); */
+/* /*For Modern Browser*/ */
+/* background: linear-gradient( */
+/*     to bottom, */
+/*     #ffffff 0%, */
+/*     #e2e2e2 100% */
+/* ); */
+/* color:#666666; */
+/* border: 1px solid #b4b4b4; */
+/* text-shadow:0 -1px 0 #ffffff; */
+/* -webkit-box-shadow: inset 0px 1px 0px #ffffff, 0px 3px 0px #b3b3b3; */
+/* -moz-box-shadow: inset 0px 1px 0px #ffffff, 0px 3px 0px #b3b3b3; */
+/* -o-box-shadow: inset 0px 1px 0px #ffffff, 0px 3px 0px #b3b3b3; */
+/* box-shadow: inset 0px 1px 0px #ffffff, 0px 3px 0px #b3b3b3; */
+/* } */
+/* .menuBtn:before { */
+/* background: none repeat scroll 0 0 rgba(0, 0, 0, 0.125); */
+/* content:""; */
+/* display:block; */
+/* position:absolute; */
+/* width:200px; */
+/* height:30px; */
+/* padding-left:2px; */
+/* padding-right:6px; */
+/* padding-bottom:2px; */
+/* left:-4px; */
+/* top:5px; */
+/* z-index:-1; */
+/* -webkit-border-radius: 6px; */
+/* -moz-border-radius: 6px; */
+/* -o-border-radius: 6px; */
+/* border-radius: 6px; */
+/* -webkit-box-shadow: 0px 1px 0px #fff; */
+/* -moz-box-shadow: 0px 1px 0px #fff; */
+/* -o-box-shadow: 0px 1px 0px #fff; */
+/* box-shadow: 0px 1px 0px #fff; */
+/* } */
+/* .menuBtn:before { */
+/* background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1); */
+/* } */
+/* .menuBtn:hover { */
+/* text-shadow: 0px 1px 1px rgba(255,255,255,0.3); */
+/* top:4px; */
+/* background: #e2e2e2; */
+/* -webkit-box-shadow: inset 0px 1px 0px #ffffff, inset 0px -1px 0px #b3b3b3; */
+/* -moz-box-shadow: inset 0px 1px 0px #ffffff, inset 0px -1px 0px #b3b3b3; */
+/* -o-box-shadow: inset 0px 1px 0px #ffffff, inset 0px -1px 0px #b3b3b3; */
+/* box-shadow: inset 0px 1px 0px #ffffff, inset 0px -1px 0px #b3b3b3; */
+/* } */
+/* .menuBtn:hover:before { */
+/* top:1px; */
+/* } */
+/* .primary { */
+/* /*Other Browser*/ */
+/* background: #ff356a; */
+/* /*For Old WebKit*/ */
+/* background: -webkit-gradient( */
+/*     linear, left top, left bottom, */
+/*     color-stop(0.00, #ff6e93), */
+/*     color-stop(1.00, #ff356a) */
+/* ); */
+/* /*For Modern Browser*/ */
+/* background: linear-gradient( */
+/*     to bottom, */
+/*     #ff6e93 0%, */
+/*     #ff356a 100% */
+/* ); */
+/* color:#fff; */
+/* border: 1px solid #ff668d; */
+/* text-shadow:0 -1px 0 #CC395F; */
+/* -webkit-box-shadow: inset 0px 1px 0px #ff8aa8, 0px 3px 0px #b33253; */
+/* -moz-box-shadow: inset 0px 1px 0px #ff8aa8, 0px 3px 0px #b33253; */
+/* -o-box-shadow: inset 0px 1px 0px #ff8aa8, 0px 3px 0px #b33253; */
+/* box-shadow: inset 0px 1px 0px #ff8aa8, 0px 3px 0px #b33253; */
+/* } */
+/* .primary:hover { */
+/* color:#ffffff; */
+/* background: #ff356a; */
+/* -webkit-box-shadow: inset 0px 1px 0px #ff8aa8, inset 0px -1px 0px #b33253; */
+/* -moz-box-shadow: inset 0px 1px 0px #ff8aa8, inset 0px -1px 0px #b33253; */
+/* -o-box-shadow: inset 0px 1px 0px #ff8aa8, inset 0px -1px 0px #b33253; */
+/* box-shadow: inset 0px 1px 0px #ff8aa8, inset 0px -1px 0px #b33253; */
+/* } */
+/* .secondary { */
+/* /*Other Browser*/ */
+/* background: #99cc00; */
+/* /*For Old WebKit*/ */
+/* background: -webkit-gradient( */
+/*     linear, left top, left bottom, */
+/*     color-stop(0.00, #99cc00), */
+/*     color-stop(1.00, #87b400) */
+/* ); */
+/* /*For Modern Browser*/ */
+/* background: linear-gradient( */
+/*     to bottom, */
+/*     #99cc00 0%, */
+/*     #87b400 100% */
+/* ); */
+/* color:#fff; */
+/* border: 1px solid #a8d426; */
+/* text-shadow:0 -1px 0 #5e7c00; */
+/* -webkit-box-shadow: inset 0px 1px 0px #a8d426, 0px 3px 0px #6e961e; */
+/* -moz-box-shadow: inset 0px 1px 0px #a8d426, 0px 3px 0px #6e961e; */
+/* -o-box-shadow: inset 0px 1px 0px #a8d426, 0px 3px 0px #6e961e; */
+/* box-shadow: inset 0px 1px 0px #a8d426, 0px 3px 0px #6e961e; */
+/* } */
+/* .secondary:hover { */
+/* color:#ffffff; */
+/* background: #87b400; */
+/* -webkit-box-shadow: inset 0px 1px 0px #a8d426, inset 0px -1px 0px #6e961e; */
+/* -moz-box-shadow: inset 0px 1px 0px #a8d426, inset 0px -1px 0px #6e961e; */
+/* -o-box-shadow: inset 0px 1px 0px #a8d426, inset 0px -1px 0px #6e961e; */
+/* box-shadow: inset 0px 1px 0px #a8d426, inset 0px -1px 0px #6e961e; */
+/* } */
+
