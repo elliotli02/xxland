@@ -20,9 +20,6 @@
 		<property name="operaterService">
 			<ref bean="operaterService" />
 		</property>
-<!-- 		<property name="brainService"> -->
-<!-- 		<ref bean="brainService" /> -->
-<!-- 		</property> -->
 	</bean>
 	<!-- 1 -->
 	<jaxws:endpoint implementor="#webService" address="/WebService" />
