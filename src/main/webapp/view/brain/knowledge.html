@@ -36,6 +36,9 @@ $(function() {
 			return false;
 		});
 	});
+
+
+
 //    $('#menulist > ul').tabs({ fx: { height: 'show' , opacity: 'show' , duration: 'fast' } });
 
 //    $("#menulist li").on("click","a",function(){
@@ -175,7 +178,24 @@ $(function() {
 				return false; //いれてないとアンカーリンクになる
 			}).filter(':eq(0)').click(); //最初の要素をクリックした状態に
 		});
-
+		 $('#btnSearch').click(function(e){
+		    	alert("123");
+//		     	event.preventDefault();
+				 $.ajax({
+					type : "GET",
+					url : "/knowledge/search.do", // リクエストURL
+					cache : false,
+//		 			data : $(this).serialize(),
+					timeout: 10000,
+					success : function(data, status, xhr) {
+						alert("success");
+								window.location.href = 'menu.jsp';
+					},
+					error : function(XMLHttpRequest, status, errorThrown) {
+						alert("err");
+					}
+				});
+			});
 	});
 	function initPage() {
 		// 	alert("initPage");
@@ -210,7 +230,9 @@ $(function() {
 					<li id="litab4"><a href="#tab4">聴力</a></li>
 				</ul>
 				<div id="tabcontent">
-					<div id="tab1" class="box">
+					<div id="tab2" class="box">
+
+						<form id="search_form">
 
 						<FIELDSET>
 							<LEGEND>検索条件</LEGEND>
@@ -220,143 +242,24 @@ $(function() {
 								<tr>
 									<td width="75px">世界キー</td>
 									<td width="230px">：&ensp;<input type="text" class="text"
-										name="userId" /></td>
+										name="mainKey" /></td>
 
 								</tr>
 
 							</table>
 						</FIELDSET>
+						</form>
 <FIELDSET>
 						<table id="example" class="datatableCss">
 							<thead>
 								<tr>
-									<th>No.</th>
-									<th>列１</th>
-									<th>列２</th>
-									<th>列３</th>
-									<th>列４</th>
+									<th>サブキー１</th>
+									<th>サブキー２</th>
+									<th>サブキー３</th>
+									<th>サブキー４</th>
+									<th>サブキー５</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>１行目ー１</td>
-									<td>１行目ー２</td>
-									<td>１行目ー３</td>
-									<td>１行目ー４</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>２行目ー１</td>
-									<td>２行目ー２</td>
-									<td>２行目ー３</td>
-									<td>２行目ー４</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>３行目ー１</td>
-									<td>３行目ー２</td>
-									<td>３行目ー３</td>
-									<td>３行目ー４</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>４行目ー１</td>
-									<td>４行目ー２</td>
-									<td>４行目ー３</td>
-									<td>４行目ー４</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>５行目ー１</td>
-									<td>５行目ー２</td>
-									<td>５行目ー３</td>
-									<td>５行目ー４</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>６行目ー１</td>
-									<td>６行目ー２</td>
-									<td>６行目ー３</td>
-									<td>６行目ー４</td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>７行目ー１</td>
-									<td>７行目ー２</td>
-									<td>７行目ー３</td>
-									<td>７行目ー４</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>８行目ー１</td>
-									<td>８行目ー２</td>
-									<td>８行目ー３</td>
-									<td>８行目ー４</td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td>９行目ー１</td>
-									<td>９行目ー２</td>
-									<td>９行目ー３</td>
-									<td>９行目ー４</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>１０行目ー１</td>
-									<td>１０行目ー２</td>
-									<td>１０行目ー３</td>
-									<td>１０行目ー４</td>
-								</tr>
-								<tr>
-									<td>11</td>
-									<td>１１行目ー１</td>
-									<td>１１行目ー２</td>
-									<td>１１行目ー３</td>
-									<td>１１行目ー４</td>
-								</tr>
-									<tr>
-									<td>10</td>
-									<td>１０行目ー１</td>
-									<td>１０行目ー２</td>
-									<td>１０行目ー３</td>
-									<td>１０行目ー４</td>
-								</tr>
-								<tr>
-									<td>11</td>
-									<td>１１行目ー１</td>
-									<td>１１行目ー２</td>
-									<td>１１行目ー３</td>
-									<td>１１行目ー４</td>
-								</tr>
-									<tr>
-									<td>10</td>
-									<td>１０行目ー１</td>
-									<td>１０行目ー２</td>
-									<td>１０行目ー３</td>
-									<td>１０行目ー４</td>
-								</tr>
-								<tr>
-									<td>11</td>
-									<td>１１行目ー１</td>
-									<td>１１行目ー２</td>
-									<td>１１行目ー３</td>
-									<td>１１行目ー４</td>
-								</tr>
-									<tr>
-									<td>10</td>
-									<td>１０行目ー１</td>
-									<td>１０行目ー２</td>
-									<td>１０行目ー３</td>
-									<td>１０行目ー４</td>
-								</tr>
-								<tr>
-									<td>11</td>
-									<td>１１行目ー１</td>
-									<td>１１行目ー２</td>
-									<td>１１行目ー３</td>
-									<td>１１行目ー４</td>
-								</tr>
 						</table>
 		</FIELDSET>
 						<FIELDSET>
@@ -370,7 +273,7 @@ $(function() {
 							<input type="button" class="footerBtnCss" id="btnBack" value="戻る" onclick="search()">
 						</FIELDSET>
 					</div>
-					<div id="tab2" class="box">タブ2の内容です。画像やリンクを含めることもできます。</div>
+					<div id="tab1" class="box">タブ2の内容です。画像やリンクを含めることもできます。</div>
 					<div id="tab3" class="box">タブ3の内容です。画像やリンクを含めることもできます。</div>
 					<div id="tab4" class="box">タブ4の内容です。画像やリンクを含めることもできます。</div>
 					<div id="tab5" class="box">タブ5の内容です。画像やリンクを含めることもできます。</div>
