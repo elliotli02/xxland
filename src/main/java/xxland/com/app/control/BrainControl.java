@@ -1,5 +1,8 @@
 package xxland.com.app.control;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -14,9 +17,9 @@ import com.kun.common.web.control.BaseControl;
 import com.kun.common.web.response.MessageOut;
 import com.kun.common.web.response.Out;
 
-import xxland.com.common.exception.ServiceException;
 import xxland.com.domain.model.KnowLedge;
 import xxland.com.service.IBrainService;
+import xxland.framework.io.impl.KnowLedgeFileControllerImpl;
 
 @Controller("brainControl")
 @RequestMapping("/knowledge")
@@ -36,8 +39,13 @@ public class BrainControl extends BaseControl<KnowLedge> {
 	@RequestMapping("/search.do" )
 	@ResponseBody
 	public ModelAndView search(KnowLedge knowLedge) {
-		try {
-			KnowLedge tmp = this.brainService.validate(knowLedge);
+
+//			try {
+//				KnowLedge tmp = this.brainService.validate(knowLedge);
+//			} catch (ServiceException e) {
+//				// TODO 自動生成された catch ブロック
+//				e.printStackTrace();
+//			}
 //			if (tmp == null) {// 登録失敗
 ////				return MessageOut.LOGIN_FAIL_MESSAGE;
 //				ModelAndView modelAndView = new ModelAndView();
@@ -49,20 +57,40 @@ public class BrainControl extends BaseControl<KnowLedge> {
 //					.setAttribute(Constants.USER_INFO, tmp);
 ////			return MessageOut.LOGIN_OK_MESSAGE;
 ////
-			ModelAndView modelAndView = new ModelAndView();
-			modelAndView.addObject("knowLedge",knowLedge);
-	        modelAndView.setViewName("/menu.jsp");
-			return modelAndView;
-		} catch (ServiceException e) {
-			this.getLogger().error(e);
+
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			String errFlg="0";
+           //
+
+			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl();
+			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
+			knowLedgeList = knowLedgeFileControllerImpl.FindKnowLedge(knowLedge.getMainKey());
+
+
+			if (knowLedgeList.isEmpty()){
+				modelAndView.addObject("knowLedge",knowLedgeList);
+				errFlg="1";
+			}
+
+//			modelAndView.addObject("errFlg",errFlg);
+		    modelAndView.setViewName("/view/brain/knowledge.html");
+
 		} catch (Exception e) {
-			this.getLogger().error(e);
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
 //		return MessageOut.LOGIN_FAIL_MESSAGE;
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject(knowLedge);
-        modelAndView.setViewName("/menu.jsp");
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.addObject(knowLedge);
+//        modelAndView.setViewName("/menu.jsp");
+//		return modelAndView;
+//		return modelAndView;
+
+//		return null;
+
 		return modelAndView;
+
 	}
 
 	/**

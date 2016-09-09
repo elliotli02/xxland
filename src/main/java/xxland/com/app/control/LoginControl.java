@@ -43,7 +43,7 @@ public class LoginControl extends BaseControl<Operater> {
 //				return MessageOut.LOGIN_FAIL_MESSAGE;
 				ModelAndView modelAndView = new ModelAndView();
 				modelAndView.addObject(operater);
-		        modelAndView.setViewName("/menu.jsp");
+		        modelAndView.setViewName("/menu.html");
 				return modelAndView;
 			}
 			((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(true)
@@ -52,7 +52,7 @@ public class LoginControl extends BaseControl<Operater> {
 //
 			ModelAndView modelAndView = new ModelAndView();
 			modelAndView.addObject("operater",operater);
-	        modelAndView.setViewName("/menu.jsp");
+	        modelAndView.setViewName("/menu.html");
 			return modelAndView;
 		} catch (ServiceException e) {
 			this.getLogger().error(e);
@@ -60,10 +60,10 @@ public class LoginControl extends BaseControl<Operater> {
 			this.getLogger().error(e);
 		}
 //		return MessageOut.LOGIN_FAIL_MESSAGE;
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject(operater);
-        modelAndView.setViewName("/menu.jsp");
-		return modelAndView;
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.addObject(operater);
+//        modelAndView.setViewName("/menu.html");
+		return null;
 	}
 
 	/**

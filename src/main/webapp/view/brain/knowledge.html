@@ -179,21 +179,56 @@ $(function() {
 			}).filter(':eq(0)').click(); //最初の要素をクリックした状態に
 		});
 		 $('#btnSearch').click(function(e){
-		    	alert("123");
+// 		    	alert("123");
 //		     	event.preventDefault();
 				 $.ajax({
 					type : "GET",
-					url : "knowledge/search.do", // リクエストURL
+					url : "/xxland/knowledge/search.do", // リクエストURL
 					cache : false,
-//		 			data : $(this).serialize(),
+		 			data : $(search_form).serialize(),
 					timeout: 10000,
+// 					dataType: "json",
 					success : function(data, status, xhr) {
-						alert("success");
-								window.location.href = 'menu.jsp';
+						if(status == "success"){
+							alert("success");
+// 							$('#Result > table').empty();
+							var result=$("example");
+							alert(data.length);
+// 							result.append('<tr><th>１</th><th>２</th><th>３</th><th>４</th><th>５</th><th>６</th></tr>');
+							if(data.length > 0){
+							for(var i=0;i<data.length;i++){
+								var tr=$('<tr><td>' + data[i].mainKey + '</td>' +
+								'<td>' + data[i].subKey1 + '</td>' +
+								'<td>' + data[i].subKey2 + '</td>' +
+								'<td>' + data[i].subKey3 + '</td>'+
+								'<td>' + data[i].subKey4 + '</td>'+
+								'<td>' + data[i].subKey5 + '</td></tr>');
+	// 							var sakujyo_btn=$('<button>削除</button>');
+	// 							sakujyo_btn.bind("click", function(){
+	// 							del_data($(this).parents('tr').get(0));
+	// 							});
+	// 							var td=$('<td>');
+	// 							td.append(sakujyo_btn);
+	// 							tr.append(td);
+								alert(tr);
+								result.append(tr);
+							 }
+// 							 $('#Result').append(result);
+// 							 }
+							}
+
+						}else{
+							alert("nosuccess");
+						}
+
+// 						window.location.href = 'menu.jsp';
 					},
-					error : function(XMLHttpRequest, status, errorThrown) {
-						alert("err");
-					}
+					  error: function(XMLHttpRequest, textStatus, errorThrown) {
+				            alert( XMLHttpRequest.status);
+				            alert(  textStatus);
+				            alert( errorThrown.message);
+					  }
+
 				});
 			});
 	});
@@ -237,8 +272,8 @@ $(function() {
 						<FIELDSET>
 							<LEGEND>検索条件</LEGEND>
 
-<!-- 							<table border=1> -->
-							<table>
+							<table border=1>
+<!-- 							<table> -->
 								<tr>
 									<td width="75px">世界キー</td>
 									<td width="230px">：&ensp;<input type="text" class="text"
@@ -247,12 +282,14 @@ $(function() {
 								</tr>
 
 							</table>
+<!-- 				<div id="Result"><br /></div> -->
 						</FIELDSET>
 						</form>
 <FIELDSET>
 						<table id="example" class="datatableCss">
 							<thead>
 								<tr>
+									<th>メインキー</th>
 									<th>サブキー１</th>
 									<th>サブキー２</th>
 									<th>サブキー３</th>

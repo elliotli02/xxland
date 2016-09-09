@@ -4,7 +4,7 @@
 
 <title>springmvc-spring-mybatis-jquery</title>
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
-<meta http-equiv="Content-Type" content="text/json; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -63,12 +63,13 @@
 // 					var jsonData = eval('(' + data + ')');
 // 						if (data != null && data != ''
 // 								&& jsonData.success == true) {
-							window.location.href = 'menu.jsp';
+							window.location.href = 'menu.html';
 // 						} else {
 // 							$.messager.alert('提 示', jsonData.message);
 // 						}
 				},
 				error : function(XMLHttpRequest, status, errorThrown) {
+					alert("err");
 // 					alert("fail:" + XMLHttpRequest);
 // 					alert("status:" + status);
 				}
