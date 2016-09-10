@@ -1,10 +1,12 @@
 package xxland.com.app.control;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,14 +14,16 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import xxland.com.common.response.impl.JsonConverter;
+import xxland.com.common.response.impl.JsonResponse;
+import xxland.com.domain.model.KnowLedge;
+import xxland.com.service.IBrainService;
+import xxland.framework.io.impl.KnowLedgeFileControllerImpl;
+
 import com.kun.common.constant.Constants;
 import com.kun.common.web.control.BaseControl;
 import com.kun.common.web.response.MessageOut;
 import com.kun.common.web.response.Out;
-
-import xxland.com.domain.model.KnowLedge;
-import xxland.com.service.IBrainService;
-import xxland.framework.io.impl.KnowLedgeFileControllerImpl;
 
 @Controller("brainControl")
 @RequestMapping("/knowledge")
@@ -38,7 +42,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 	 */
 	@RequestMapping("/search.do" )
 	@ResponseBody
-	public ModelAndView search(KnowLedge knowLedge) {
+	public String search(KnowLedge knowLedge) {
 
 //			try {
 //				KnowLedge tmp = this.brainService.validate(knowLedge);
@@ -57,7 +61,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 //					.setAttribute(Constants.USER_INFO, tmp);
 ////			return MessageOut.LOGIN_OK_MESSAGE;
 ////
-
+	    JsonResponse jsonResponse = new JsonResponse();
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			String errFlg="0";
@@ -65,16 +69,26 @@ public class BrainControl extends BaseControl<KnowLedge> {
 
 			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl();
 			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
-			knowLedgeList = knowLedgeFileControllerImpl.FindKnowLedge(knowLedge.getMainKey());
+			knowLedgeList = knowLedgeFileControllerImpl.FindKnowLedge(knowLedge.getMainKey()+".txt");
+			JSONObject obj = new JSONObject();
 
 
-			if (knowLedgeList.isEmpty()){
-				modelAndView.addObject("knowLedge",knowLedgeList);
+			if (knowLedgeList.size()!=0){
+				obj.put("list", knowLedgeList);
+				modelAndView.addObject("knowLedge",obj.getJSONArray("list"));
+			System.out.println(obj.getJSONArray("list"));
 				errFlg="1";
 			}
 
 //			modelAndView.addObject("errFlg",errFlg);
-		    modelAndView.setViewName("/view/brain/knowledge.html");
+//		    modelAndView.setViewName("/view/brain/knowledge.html");
+
+
+		    jsonResponse.setMainlist(knowLedgeList);
+
+System.out.println(JsonConverter.toString(jsonResponse));
+
+
 
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
@@ -88,8 +102,14 @@ public class BrainControl extends BaseControl<KnowLedge> {
 //		return modelAndView;
 
 //		return null;
-
-		return modelAndView;
+		   try {
+			return JsonConverter.toString(jsonResponse);
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+//		return modelAndView;
+		return null;
 
 	}
 

@@ -187,39 +187,28 @@ $(function() {
 					cache : false,
 		 			data : $(search_form).serialize(),
 					timeout: 10000,
-// 					dataType: "json",
-					success : function(data, status, xhr) {
-						if(status == "success"){
-							alert("success");
-// 							$('#Result > table').empty();
-							var result=$("example");
-							alert(data.length);
-// 							result.append('<tr><th>１</th><th>２</th><th>３</th><th>４</th><th>５</th><th>６</th></tr>');
-							if(data.length > 0){
-							for(var i=0;i<data.length;i++){
-								var tr=$('<tr><td>' + data[i].mainKey + '</td>' +
-								'<td>' + data[i].subKey1 + '</td>' +
-								'<td>' + data[i].subKey2 + '</td>' +
-								'<td>' + data[i].subKey3 + '</td>'+
-								'<td>' + data[i].subKey4 + '</td>'+
-								'<td>' + data[i].subKey5 + '</td></tr>');
-	// 							var sakujyo_btn=$('<button>削除</button>');
-	// 							sakujyo_btn.bind("click", function(){
-	// 							del_data($(this).parents('tr').get(0));
-	// 							});
-	// 							var td=$('<td>');
-	// 							td.append(sakujyo_btn);
-	// 							tr.append(td);
-								alert(tr);
-								result.append(tr);
-							 }
-// 							 $('#Result').append(result);
-// 							 }
-							}
+					dataType: "json",
+					success : function(data) {
 
-						}else{
-							alert("nosuccess");
-						}
+						alert(data);
+
+						// 						if(status == "success"){
+// 							alert("success");
+
+							jQuery.each( data.mainList, function( index ) {
+		                         alert(data.mainList[index].mainkey);
+		                     } );
+
+
+// 							 var jsonStr = '{"message":"success","returnCode":0}';
+// 				                var json = $.parseJSON(data.knowLedge);
+// 				                alert(json.mainKey);
+
+
+
+							// 						}else{
+// 							alert("nosuccess");
+// 						}
 
 // 						window.location.href = 'menu.jsp';
 					},
