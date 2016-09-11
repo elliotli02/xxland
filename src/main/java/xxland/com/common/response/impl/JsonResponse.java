@@ -15,13 +15,13 @@ public class JsonResponse {
 
 	public Map<?, ?> map;
 
-	public List<?> mainlist;
+	public List<?> mainList;
 
 
 
 	public JsonResponse(){
-		errFlg="";
-		errMsg="";
+		errFlg="0";
+		errMsg="Nothing";
 	}
 
 	public String getErrFlg() {
@@ -48,12 +48,12 @@ public class JsonResponse {
 		this.map = map;
 	}
 
-	public List<?> getMainlist() {
-		return mainlist;
+	public List<?> getMainList() {
+		return mainList;
 	}
 
-	public void setMainlist(List<?> mainlist) {
-		this.mainlist = mainlist;
+	public void setMainList(List<?> mainList) {
+		this.mainList = mainList;
 	}
 
 

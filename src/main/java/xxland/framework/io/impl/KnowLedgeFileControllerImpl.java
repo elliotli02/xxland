@@ -23,7 +23,7 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 		try {
 		 String path = "C:\\XXLAND\\knowledge";
 		 FileSearch search = new FileSearch();
-		 File[] files = search.listFiles(path, mainKey);
+		 File[] files = search.listFiles(path, mainKey+".txt");
 		 KnowLedge knowLedge = new KnowLedge();
 		 List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
 

@@ -69,7 +69,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 
 			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl();
 			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
-			knowLedgeList = knowLedgeFileControllerImpl.FindKnowLedge(knowLedge.getMainKey()+".txt");
+			knowLedgeList = knowLedgeFileControllerImpl.FindKnowLedge(knowLedge.getMainKey());
 			JSONObject obj = new JSONObject();
 
 
@@ -84,7 +84,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 //		    modelAndView.setViewName("/view/brain/knowledge.html");
 
 
-		    jsonResponse.setMainlist(knowLedgeList);
+		    jsonResponse.setMainList(knowLedgeList);
 
 System.out.println(JsonConverter.toString(jsonResponse));
 

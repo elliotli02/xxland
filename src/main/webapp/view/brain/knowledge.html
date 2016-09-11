@@ -189,28 +189,25 @@ $(function() {
 					timeout: 10000,
 					dataType: "json",
 					success : function(data) {
+						var responseJsonData =JSON.parse(data);
 
-						alert(data);
+// 						exampleTable
+// 					    .clear()
+// 					    .draw();
+$('#example').dataTable().fnClearTable();
+$('#example').dataTable().fnDraw();
+$('#example').dataTable().fnDestroy();
+// $('#example tbody').empty();
+						for (var i=0; i<responseJsonData.mainList.length; i++){
+// 							 alert(responseJsonData.mainList[i].mainKey);
+							  $('#example tbody').append('<tr><td>' + responseJsonData.mainList[i].mainKey + '</td><td>'
+									  								+ responseJsonData.mainList[i].subKey1 + '</td><td>'
+									  								+ responseJsonData.mainList[i].subKey2 + '</td><td>'
+									  								+ responseJsonData.mainList[i].subKey3 + '</td><td>'
+									  								+ responseJsonData.mainList[i].subKey4 + '</td><td>'
+									  								+ responseJsonData.mainList[i].subKey5 + '</td></tr>');
+						}
 
-						// 						if(status == "success"){
-// 							alert("success");
-
-							jQuery.each( data.mainList, function( index ) {
-		                         alert(data.mainList[index].mainkey);
-		                     } );
-
-
-// 							 var jsonStr = '{"message":"success","returnCode":0}';
-// 				                var json = $.parseJSON(data.knowLedge);
-// 				                alert(json.mainKey);
-
-
-
-							// 						}else{
-// 							alert("nosuccess");
-// 						}
-
-// 						window.location.href = 'menu.jsp';
 					},
 					  error: function(XMLHttpRequest, textStatus, errorThrown) {
 				            alert( XMLHttpRequest.status);
@@ -261,8 +258,8 @@ $(function() {
 						<FIELDSET>
 							<LEGEND>検索条件</LEGEND>
 
-							<table border=1>
-<!-- 							<table> -->
+<!-- 							<table border=1> -->
+							<table>
 								<tr>
 									<td width="75px">世界キー</td>
 									<td width="230px">：&ensp;<input type="text" class="text"
