@@ -21,7 +21,7 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 	}
 	public List<KnowLedge> FindKnowLedge(String mainKey){
 		try {
-		 String path = "C:\\XXLAND\\knowledge";
+		 String path = "C:\\Users\\ri-s\\Desktop\\XXLAND\\knowledge";
 		 FileSearch search = new FileSearch();
 		 File[] files = search.listFiles(path, mainKey+".txt");
 		 KnowLedge knowLedge = new KnowLedge();

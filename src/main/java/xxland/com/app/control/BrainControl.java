@@ -14,16 +14,16 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kun.common.constant.Constants;
+import com.kun.common.web.control.BaseControl;
+import com.kun.common.web.response.MessageOut;
+import com.kun.common.web.response.Out;
+
 import xxland.com.common.response.impl.JsonConverter;
 import xxland.com.common.response.impl.JsonResponse;
 import xxland.com.domain.model.KnowLedge;
 import xxland.com.service.IBrainService;
 import xxland.framework.io.impl.KnowLedgeFileControllerImpl;
-
-import com.kun.common.constant.Constants;
-import com.kun.common.web.control.BaseControl;
-import com.kun.common.web.response.MessageOut;
-import com.kun.common.web.response.Out;
 
 @Controller("brainControl")
 @RequestMapping("/knowledge")
@@ -64,7 +64,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 	    JsonResponse jsonResponse = new JsonResponse();
 		ModelAndView modelAndView = new ModelAndView();
 		try {
-			String errFlg="0";
+//			String errFlg="0";
            //
 
 			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl();
@@ -77,7 +77,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 				obj.put("list", knowLedgeList);
 				modelAndView.addObject("knowLedge",obj.getJSONArray("list"));
 			System.out.println(obj.getJSONArray("list"));
-				errFlg="1";
+//				errFlg="1";
 			}
 
 //			modelAndView.addObject("errFlg",errFlg);
