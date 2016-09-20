@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="../../common/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../../common/js/jquery.dataTables.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="common/css/demo.css"> -->
 <link rel="stylesheet" type="text/css" href="../../common/css/main.css">
 <link rel="stylesheet" type="text/css" href="../../common/css/jquery.dataTables.css">
@@ -36,9 +37,6 @@ $(function() {
 			return false;
 		});
 	});
-
-
-
 //    $('#menulist > ul').tabs({ fx: { height: 'show' , opacity: 'show' , duration: 'fast' } });
 
 //    $("#menulist li").on("click","a",function(){
@@ -84,12 +82,11 @@ $(function() {
 		      bLengthChange:false,
 		    //jQuery-UIの利用設定
 		      bJQueryUI:false,
-
+		      bInfo:true,
 // 		      scrollY:        '50vh',
 // 		        scrollCollapse: true,
 // 		        paging:         false,
 		      "fnDrawCallback" : function(oSettings) {
-
 		          var total_count = oSettings.fnRecordsTotal();
 		              var columns_in_row = $(this).children('thead').children('tr').children('th').length;
 		              var show_num = oSettings._iDisplayLength;
@@ -105,7 +102,6 @@ $(function() {
 		                  $(this).append('<tr "><td colspan="' + columns_in_row + '">&nbsp;</td></tr>');
 		                }
 		              }
-
 		       },
 		      "oLanguage" : {
 		          "sProcessing":   "処理中...",
@@ -129,30 +125,48 @@ $(function() {
 // 		             "sNext":     "",
 // 		             "sLast":     ""
 // 		         }
-
-		       },
-		       columns: [
-		                  { data: "mainKey" },
-		                  { data: "subKey1" },
-		                  { data: "subKey2" },
-		                  { data: "subKey3" },
-		                  { data: "subKey4" },
-		                  { data: "subKey5" }
-		              ]
-
+		       }
 		   });
+
+		$("#dialog-add").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			buttons:[{
+		        id:"add-insert",
+		        text: "插入",
+		        class: "footerBtnCss",
+		        click: function() {
+		            $(this).dialog("close");
+		        }
+		    },
+		    {
+		        id:"add-cancel",
+		        text: "返回",
+		        class: "footerBtnCss",
+		        click: function() {
+		            $(this).dialog("close");
+		        }
+		    }],
+			open: function() {
+// 				$("#btn-accept").attr("disabled",true);
+// 				$('#btn-accept').removeClass("ui-button-text-only");
+// 				$('#btn-accept').addClass("footerBtnCss");
+// 				var buttons = $('.ui-dialog-buttonset').children('button');
+// 				buttons.removeClass("ui-button ui-widget ui-state-default ui-state-active ui-state-focus");
+	        }
+		});
+
 		$("#btnPrevious").click(function(){
-		       alert("btnPrevious");
-		       oSettings.oApi._fnPageChange( oSettings, "next" );
-	            fnCallbackDraw( oSettings );
-		   });
+			alert("btnPrevious");
+			oSettings.oApi._fnPageChange(oSettings,"next");
+			fnCallbackDraw(oSettings);
+		});
+
 		$("#btnNext").click(function(){
-		       alert("btnNext");
-		   });
-
-
-
-
+			alert("btnNext");
+		});
 	});
 
 // 	 var total_count = oSettings.fnRecordsTotal();
@@ -171,14 +185,14 @@ $(function() {
 //        }
 //      }
 
-	$("#accordion > li > a").click(function(){
+		$("#accordion > li > a").click(function(){
 	       var click = $("+ul",this);
 	       click.slideDown();
 	       $("#accordion ul").not(click).slideUp();
 	       $(".arrow").removeClass("rotate");
 	       $("> .arrow",this).addClass("rotate");
 	       return false;
-	   });
+		});
 		$(function() {
 			$('#tabcontent > div').hide(); //初期では非表示
 			$('#menulist a').click(function() {
@@ -188,62 +202,45 @@ $(function() {
 				return false; //いれてないとアンカーリンクになる
 			}).filter(':eq(0)').click(); //最初の要素をクリックした状態に
 		});
-		 $('#btnSearch').click(function(e){
-// 		    	alert("123");
-//		     	event.preventDefault();
-				 $.ajax({
-					type : "GET",
-					url : "/xxland/knowledge/search.do", // リクエストURL
-					cache : false,
-		 			data : $(search_form).serialize(),
-					timeout: 10000,
-					dataType: "json",
-					success : function(data) {
-						var responseJsonData =JSON.parse(data);
-						if (responseJsonData.mainList.length > 0 ){
-							$('#example').dataTable().fnClearTable();
-// 							$('#example').dataTable().fnDraw();
-// 							$('#example').dataTable().fnDestroy();
-							for (var i=0; i<responseJsonData.mainList.length; i++){
-// 								  $('#example tbody').append('<tr><td>' + responseJsonData.mainList[i].mainKey + '</td><td>'
-// 										  								+ responseJsonData.mainList[i].subKey1 + '</td><td>'
-// 										  								+ responseJsonData.mainList[i].subKey2 + '</td><td>'
-// 										  								+ responseJsonData.mainList[i].subKey3 + '</td><td>'
-// 										  								+ responseJsonData.mainList[i].subKey4 + '</td><td>'
-// 										  								+ responseJsonData.mainList[i].subKey5 + '</td></tr>');
-// 								alert(JSON.stringify(responseJsonData.mainList[i]));
-// 								alert($.parseJSON(JSON.stringify(responseJsonData.mainList[i])));
-								  $('#example').dataTable().fnAddData([
-								                                       responseJsonData.mainList[i].mainKey,
-								                                       responseJsonData.mainList[i].subKey1,
-								                                       responseJsonData.mainList[i].subKey2,
-								                                       responseJsonData.mainList[i].subKey3,
-								                                       responseJsonData.mainList[i].subKey4,
-								                                       responseJsonData.mainList[i].subKey5]);
-// 								  $("tbody>tr:last").attr('data-href', 'arimo.php?id=' + this.Profile.id);
-
-
-							}
-							 $('#example').dataTable().fnDraw();
-						}else{
-							$('#example').dataTable().fnClearTable();
-							$('#example').dataTable().fnDraw();
+		$('#btnSearch').click(function(e){
+			 $.ajax({
+				type : "GET",
+				url : "/xxland/knowledge/search.do", // リクエストURL
+				cache : false,
+	 			data : $(search_form).serialize(),
+				timeout: 10000,
+				dataType: "json",
+				success : function(data) {
+					var responseJsonData =JSON.parse(data);
+					if (responseJsonData.mainList.length > 0 ){
+						$('#example').dataTable().fnClearTable();
+						for (var i=0; i<responseJsonData.mainList.length; i++){
+							  $('#example').dataTable().fnAddData([
+	                                      responseJsonData.mainList[i].mainKey,
+	                                      responseJsonData.mainList[i].subKey1,
+	                                      responseJsonData.mainList[i].subKey2,
+	                                      responseJsonData.mainList[i].subKey3,
+	                                      responseJsonData.mainList[i].subKey4,
+	                                      responseJsonData.mainList[i].subKey5]);
 						}
-
-					},
-					  error: function(XMLHttpRequest, textStatus, errorThrown) {
-				            alert( XMLHttpRequest.status);
-				            alert(  textStatus);
-				            alert( errorThrown.message);
-					  }
-
-				});
+						$('#example').dataTable().fnDraw();
+					}else{
+						$('#example').dataTable().fnClearTable();
+						$('#example').dataTable().fnDraw();
+					}
+				},
+			  error: function(XMLHttpRequest, textStatus, errorThrown) {
+		            alert( XMLHttpRequest.status);
+		            alert(  textStatus);
+		            alert( errorThrown.message);
+			  }
 			});
+		});
+
+	 	$("#btnAdd").click(function() {
+			$("#dialog-add").dialog("open");
+		});
 	});
-	function initPage() {
-		// 	alert("initPage");
-		// 	ChangeTab('tab1');
-	}
 	function ChangeTab(tabname) {
 		// 	    // タブメニュー実装
 		// 	    document.getElementById('tab1').style.display = 'none';
@@ -257,8 +254,9 @@ $(function() {
 	}
 
 </script>
+
 </head>
-<body onload="initPage()" >
+<body>
 	<div id="header">
 		<p class="hl">xxland管理管理システム</p>
 	</div>
@@ -274,21 +272,15 @@ $(function() {
 				</ul>
 				<div id="tabcontent">
 					<div id="tab2" class="box">
-
 						<form id="search_form">
-
 						<FIELDSET>
 							<LEGEND>検索条件</LEGEND>
-
-
 							<table>
 								<tr>
 									<td width="75px">世界キー</td>
 									<td width="230px">：&ensp;<input type="text" class="text"
-										name="mainKey" /></td>
-
+										name="mainKey"/></td>
 								</tr>
-
 							</table>
 						</FIELDSET>
 						</form>
@@ -307,14 +299,14 @@ $(function() {
 						</table>
 						</FIELDSET>
 						<FIELDSET>
-							<input type="button" class="footerBtnCss" id="btnSearch" value="検索" onclick="search()">
-							<input type="button" class="footerBtnCss" id="btn1" value="btn1" onclick="search()">
-							<input type="button" class="footerBtnCss" id="btnPrevious" value="前頁" onclick="search()">
-							<input type="button" class="footerBtnCss" id="btnNext" value="次頁" onclick="search()">
-							<input type="button" class="footerBtnCss" id="btn4" value="btn4" onclick="search()">
-							<input type="button" class="footerBtnCss" id="btn" value="btn5" onclick="search()">
-							<input type="button" class="footerBtnCss" id="btn6" value="btn6" onclick="search()">
-							<input type="button" class="footerBtnCss" id="btnBack" value="戻る" onclick="search()">
+							<input type="button" class="footerBtnCss" id="btnSearch" value="検索">
+							<input type="button" class="footerBtnCss" id="btnAdd" value="追加">
+							<input type="button" class="footerBtnCss" id="btnUpd" value="修正">
+							<input type="button" class="footerBtnCss" id="btnDel" value="削除">
+							<input type="button" class="footerBtnCss" id="btn4" value="btn4">
+							<input type="button" class="footerBtnCss" id="btn" value="btn5">
+							<input type="button" class="footerBtnCss" id="btn6" value="btn6">
+							<input type="button" class="footerBtnCss" id="btnBack" value="戻る">
 						</FIELDSET>
 					</div>
 					<div id="tab1" class="box">タブ2の内容です。画像やリンクを含めることもできます。</div>
@@ -333,7 +325,7 @@ $(function() {
 						<li><a href="#">サブカテゴリー３</a></li>
 					</ul></li>
 				<li><a href="#">脳<span class="arrow"></span></a>
-					<ul id="active">
+					<ul>
 						<li><a href="#">知識入力</a></li>
 						<li><a href="#">サブカテゴリー２</a></li>
 						<li><a href="#">サブカテゴリー３</a></li>
@@ -365,5 +357,18 @@ $(function() {
 	<div id="footer">
 		<address>制作者：xxland</address>
 	</div>
+
+	<div id="dialog-add" title="新規登録">
+		<form id="add_form">
+			<fieldset>
+				<label>世界キー</label>
+					<input type="text" name="subMainKey" class="text" />
+				<label>サブキー</label>
+					<input type="text" name="subSubKey1" class="text"/>
+			</fieldset>
+
+		</form>
+	</div>
+
 </body>
 </html>
