@@ -10,14 +10,14 @@ public class JsonResponse {
 
 //	public int value;
 
-	public String errFlg;
-	public String errMsg;
+	private String errFlg;
+	private String errMsg;
 
-	public Map<?, ?> map;
+	private Map<?, ?> map;
 
-	public List<?> mainList;
+	private List<?> mainList;
 
-
+//	private static<T> T mainEntity;
 
 	public JsonResponse(){
 		errFlg="0";

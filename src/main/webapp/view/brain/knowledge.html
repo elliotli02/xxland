@@ -138,6 +138,44 @@ $(function() {
 		        text: "插入",
 		        class: "footerBtnCss",
 		        click: function() {
+		        	$.ajax({
+						type : "GET",
+						url : "/xxland/knowledge/insert.do", // リクエストURL
+						cache : false,
+			 			data : $(add_form).serialize(),
+						timeout: 10000,
+						dataType: "json",
+						success : function(data) {
+// 							var responseJsonData =JSON.parse(data);
+// 							if (responseJsonData.mainList.length > 0 ){
+// 								$('#example').dataTable().fnClearTable();
+// 								for (var i=0; i<responseJsonData.mainList.length; i++){
+// 									  $('#example').dataTable().fnAddData([
+// 			                                      responseJsonData.mainList[i].mainKey,
+// 			                                      responseJsonData.mainList[i].subKey1,
+// 			                                      responseJsonData.mainList[i].subKey2,
+// 			                                      responseJsonData.mainList[i].subKey3,
+// 			                                      responseJsonData.mainList[i].subKey4,
+// 			                                      responseJsonData.mainList[i].subKey5]);
+// 								}
+// 								$('#example').dataTable().fnDraw();
+// 							}else{
+// 								$('#example').dataTable().fnClearTable();
+// 								$('#example').dataTable().fnDraw();
+// 							}
+						},
+					  error: function(XMLHttpRequest, textStatus, errorThrown) {
+				            alert( XMLHttpRequest.status);
+				            alert(  textStatus);
+				            alert( errorThrown.message);
+					  }
+					});
+
+
+
+
+
+
 		            $(this).dialog("close");
 		        }
 		    },
@@ -361,10 +399,18 @@ $(function() {
 	<div id="dialog-add" title="新規登録">
 		<form id="add_form">
 			<fieldset>
-				<label>世界キー</label>
+				<label>世界キー：</label><br>
 					<input type="text" name="subMainKey" class="text" />
-				<label>サブキー</label>
+				<label>サブキー１:</label><br>
 					<input type="text" name="subSubKey1" class="text"/>
+				<label>サブキー２:</label><br>
+					<input type="text" name="subSubKey2" class="text"/>
+				<label>サブキー３:</label><br>
+					<input type="text" name="subSubKey3" class="text"/>
+				<label>サブキー４:</label><br>
+					<input type="text" name="subSubKey4" class="text"/>
+				<label>サブキー５:</label><br>
+					<input type="text" name="subSubKey5" class="text"/>
 			</fieldset>
 
 		</form>

@@ -15,6 +15,18 @@ public class KnowLedge{
 	private String subKey5;
 
 
+	private String subMainKey;
+
+	private String subSubKey1;
+
+	private String subSubKey2;
+
+	private String subSubKey3;
+
+	private String subSubKey4;
+
+	private String subSubKey5;
+
 	public String getMainKey() {
 		return mainKey;
 	}
@@ -61,6 +73,54 @@ public class KnowLedge{
 
 	public void setSubKey5(String subKey5) {
 		this.subKey5 = subKey5;
+	}
+
+	public String getSubMainKey() {
+		return subMainKey;
+	}
+
+	public void setSubMainKey(String subMainKey) {
+		this.subMainKey = subMainKey;
+	}
+
+	public String getSubSubKey1() {
+		return subSubKey1;
+	}
+
+	public void setSubSubKey1(String subSubKey1) {
+		this.subSubKey1 = subSubKey1;
+	}
+
+	public String getSubSubKey2() {
+		return subSubKey2;
+	}
+
+	public void setSubSubKey2(String subSubKey2) {
+		this.subSubKey2 = subSubKey2;
+	}
+
+	public String getSubSubKey3() {
+		return subSubKey3;
+	}
+
+	public void setSubSubKey3(String subSubKey3) {
+		this.subSubKey3 = subSubKey3;
+	}
+
+	public String getSubSubKey4() {
+		return subSubKey4;
+	}
+
+	public void setSubSubKey4(String subSubKey4) {
+		this.subSubKey4 = subSubKey4;
+	}
+
+	public String getSubSubKey5() {
+		return subSubKey5;
+	}
+
+	public void setSubSubKey5(String subSubKey5) {
+		this.subSubKey5 = subSubKey5;
 	}
 
 }

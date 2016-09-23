@@ -32,4 +32,32 @@ public File FileOpen(String filename) {
 	return null;
 }
 
+
+@Override
+public boolean FileExists(String filename) {
+	// TODO 自動生成されたメソッド・スタブ
+	return false;
+}
+
+
+@Override
+public boolean PathExists(String passname) {
+	// TODO 自動生成されたメソッド・スタブ
+	return false;
+}
+
+
+@Override
+public void CreateFile(String filename) {
+	// TODO 自動生成されたメソッド・スタブ
+
+}
+
+
+@Override
+public void CreatePath(String filename) {
+	// TODO 自動生成されたメソッド・スタブ
+
+}
+
 }
