@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xxland.com.domain.model.KnowLedge;
+import xxland.framework.ComConstant;
 import xxland.framework.io.IFileController;
 
 public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements IFileController{
@@ -19,8 +20,8 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 
 	public KnowLedgeFileControllerImpl(String fileAbsolutePath) {
 		// TODO 自動生成されたコンストラクター・スタブ
-		super.mFileAbsolutePath = fileAbsolutePath;
-
+//		super.mFileAbsolutePath = fileAbsolutePath;
+		super(fileAbsolutePath);
 	}
 	public List<KnowLedge> FindKnowLedge(String mainKey){
 		try {

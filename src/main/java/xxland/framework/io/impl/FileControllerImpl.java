@@ -179,16 +179,16 @@ public void WriteFile(String addLine, boolean appendFlg, String encoding) {
 @Override
 public void WriteFile(String addLine, boolean appendFlg) {
 	// TODO 自動生成されたメソッド・スタブ
-	inputFile = new File(mFileName);
+	outputFile = new File(mFileAbsolutePath);
 	try {
 		fileOutputStream  = new FileOutputStream(outputFile);
 		outputStreamWriter = new OutputStreamWriter(fileOutputStream,"UTF-8");
 		printWriter = new PrintWriter(outputStreamWriter);
 
 		if (appendFlg){
-			printWriter.println(addLine);
-		}else{
 			printWriter.append(addLine);
+		}else{
+			printWriter.println(addLine);
 		}
 		printWriter.close();
 

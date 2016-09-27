@@ -14,16 +14,17 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kun.common.constant.Constants;
-import com.kun.common.web.control.BaseControl;
-import com.kun.common.web.response.MessageOut;
-import com.kun.common.web.response.Out;
-
 import xxland.com.common.response.impl.JsonConverter;
 import xxland.com.common.response.impl.JsonResponse;
 import xxland.com.domain.model.KnowLedge;
 import xxland.com.service.IBrainService;
+import xxland.framework.ComConstant;
 import xxland.framework.io.impl.KnowLedgeFileControllerImpl;
+
+import com.kun.common.constant.Constants;
+import com.kun.common.web.control.BaseControl;
+import com.kun.common.web.response.MessageOut;
+import com.kun.common.web.response.Out;
 
 @Controller("brainControl")
 @RequestMapping("/knowledge")
@@ -67,7 +68,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 //			String errFlg="0";
            //
 
-			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS,knowLedge.getMainKey()+".txt");
+			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS+knowLedge.getMainKey()+".txt");
 			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
 			knowLedgeList = knowLedgeFileControllerImpl.FindKnowLedge(knowLedge.getMainKey());
 			JSONObject obj = new JSONObject();
@@ -131,7 +132,7 @@ System.out.println(JsonConverter.toString(jsonResponse));
 //			String errFlg="0";
            //
 
-			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS,knowLedge.getMainKey()+".txt");
+			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS+knowLedge.getSubMainKey()+".txt");
 //			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
 			knowLedgeFileControllerImpl.AddKnowLedge(knowLedge);
 //			JSONObject obj = new JSONObject();
@@ -166,14 +167,14 @@ System.out.println(JsonConverter.toString(jsonResponse));
 //		return modelAndView;
 
 //		return null;
-		jsonResponse.setErrFlg("0");
-		jsonResponse.setMap("knowLedge",knowLedge);
-		   try {
-			return JsonConverter.toString(jsonResponse);
-		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+//		jsonResponse.setErrFlg("0");
+//		jsonResponse.setMap("knowLedge",knowLedge);
+//		   try {
+//			return JsonConverter.toString(jsonResponse);
+//		} catch (IOException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		}
 //		return modelAndView;
 		return null;
 
