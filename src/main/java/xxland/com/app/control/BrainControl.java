@@ -14,16 +14,16 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kun.common.constant.Constants;
+import com.kun.common.web.control.BaseControl;
+import com.kun.common.web.response.MessageOut;
+import com.kun.common.web.response.Out;
+
 import xxland.com.common.response.impl.JsonConverter;
 import xxland.com.common.response.impl.JsonResponse;
 import xxland.com.domain.model.KnowLedge;
 import xxland.com.service.IBrainService;
 import xxland.framework.io.impl.KnowLedgeFileControllerImpl;
-
-import com.kun.common.constant.Constants;
-import com.kun.common.web.control.BaseControl;
-import com.kun.common.web.response.MessageOut;
-import com.kun.common.web.response.Out;
 
 @Controller("brainControl")
 @RequestMapping("/knowledge")
@@ -67,7 +67,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 //			String errFlg="0";
            //
 
-			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl();
+			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS,knowLedge.getMainKey()+".txt");
 			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
 			knowLedgeList = knowLedgeFileControllerImpl.FindKnowLedge(knowLedge.getMainKey());
 			JSONObject obj = new JSONObject();
@@ -125,30 +125,13 @@ System.out.println(JsonConverter.toString(jsonResponse));
 	@ResponseBody
 	public String insert(KnowLedge knowLedge) {
 
-//			try {
-//				KnowLedge tmp = this.brainService.validate(knowLedge);
-//			} catch (ServiceException e) {
-//				// TODO 自動生成された catch ブロック
-//				e.printStackTrace();
-//			}
-//			if (tmp == null) {// 登録失敗
-////				return MessageOut.LOGIN_FAIL_MESSAGE;
-//				ModelAndView modelAndView = new ModelAndView();
-//				modelAndView.addObject(operater);
-//		        modelAndView.setViewName("/menu.jsp");
-//				return modelAndView;
-//			}
-//			((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(true)
-//					.setAttribute(Constants.USER_INFO, tmp);
-////			return MessageOut.LOGIN_OK_MESSAGE;
-////
 	    JsonResponse jsonResponse = new JsonResponse();
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 //			String errFlg="0";
            //
 
-			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl();
+			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS,knowLedge.getMainKey()+".txt");
 //			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
 			knowLedgeFileControllerImpl.AddKnowLedge(knowLedge);
 //			JSONObject obj = new JSONObject();
