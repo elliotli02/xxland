@@ -1,5 +1,7 @@
 package xxland.framework.io.impl;
 
+import xxland.framework.io.IFileController;
+
 public class CsvFileControllerImpl  extends FileControllerImpl implements IFileController{
 
 	public CsvFileControllerImpl() {

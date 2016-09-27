@@ -3,15 +3,13 @@ package xxland.framework.io.impl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import xxland.com.domain.model.KnowLedge;
-import xxland.framework.ComConstant;
+import xxland.framework.io.IFileController;
 
 public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements IFileController{
 
@@ -19,8 +17,10 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
-	public KnowLedgeFileControllerImpl(String fileName) {
+	public KnowLedgeFileControllerImpl(String fileAbsolutePath) {
 		// TODO 自動生成されたコンストラクター・スタブ
+		super.mFileAbsolutePath = fileAbsolutePath;
+
 	}
 	public List<KnowLedge> FindKnowLedge(String mainKey){
 		try {
@@ -77,34 +77,20 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 //		 File[] files = search.listFiles(ComConstant.KNOWLEDGE_PASS, mainKey+".txt");
 		 KnowLedge knowLedge = new KnowLedge();
 
-			knowLedge.setMainKey(addknowLedge.getSubMainKey());
-			knowLedge.setSubKey1(addknowLedge.getSubSubKey1());
-			knowLedge.setSubKey2(addknowLedge.getSubSubKey1());
-			knowLedge.setSubKey3(addknowLedge.getSubSubKey1());
-			knowLedge.setSubKey4(addknowLedge.getSubSubKey1());
-			knowLedge.setSubKey5(addknowLedge.getSubSubKey1());
-			String newLine = addknowLedge.getSubMainKey() + " " + addknowLedge.getSubSubKey1() + " " +
-					addknowLedge.getSubSubKey2() + " " + addknowLedge.getSubSubKey3() + " " +
-					addknowLedge.getSubSubKey4() + " " + addknowLedge.getSubSubKey5() ;
-			String fileName = ComConstant.KNOWLEDGE_PASS + addknowLedge.getSubMainKey() + ".txt";
-		    PrintWriter printWriter = null;
-		    File file = new File(ComConstant.KNOWLEDGE_PASS, fileName);
-		    try {
-		        if (!file.exists()) file.createNewFile();
-		        printWriter = new PrintWriter(new FileOutputStream(fileName, true));
-		        printWriter.write(newLine);
-		    } catch (IOException ioex) {
-		        ioex.printStackTrace();
-		    } finally {
-		        if (printWriter != null) {
-		            printWriter.flush();
-		            printWriter.close();
-		        }
-		    }
+		knowLedge.setMainKey(addknowLedge.getSubMainKey());
+		knowLedge.setSubKey1(addknowLedge.getSubSubKey1());
+		knowLedge.setSubKey2(addknowLedge.getSubSubKey1());
+		knowLedge.setSubKey3(addknowLedge.getSubSubKey1());
+		knowLedge.setSubKey4(addknowLedge.getSubSubKey1());
+		knowLedge.setSubKey5(addknowLedge.getSubSubKey1());
+		String newLine = addknowLedge.getSubMainKey() + " " + addknowLedge.getSubSubKey1() + " " +
+				addknowLedge.getSubSubKey2() + " " + addknowLedge.getSubSubKey3() + " " +
+				addknowLedge.getSubSubKey4() + " " + addknowLedge.getSubSubKey5() ;
+		String fileName = ComConstant.KNOWLEDGE_PASS + addknowLedge.getSubMainKey() + ".txt";
 
-		  return true;
+		WriteFile(newLine,true);
 
-
+		return true;
 
 	}
 
