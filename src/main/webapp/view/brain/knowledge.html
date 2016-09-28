@@ -12,7 +12,6 @@
 <link rel="stylesheet" type="text/css" href="../../common/css/jquery-ui-1.10.4.custom.css">
 <!-- <link rel="stylesheet" type="text/css" href="common/css/font-face/typicons.css"> -->
 
-
 <script type="text/javascript">
 
 $(function() {
@@ -37,31 +36,6 @@ $(function() {
 			return false;
 		});
 	});
-//    $('#menulist > ul').tabs({ fx: { height: 'show' , opacity: 'show' , duration: 'fast' } });
-
-//    $("#menulist li").on("click","a",function(){
-// 	   $("#tab1").hide();
-// 	   $("#tab2").hide();
-// 	   $("#tab3").hide();
-// 	   $("#tab4").hide();
-// 	   $("#tab5").hide();
-
-// 	   var $a = $("#menulist li a");
-// 	   alert($a.attr("href"));
-
-
-//     alert($(this).find("a").text());
-// // 	   alert('1: '+event.isDefaultPrevented());
-
-
-// // 	   alert('2: '+event.isDefaultPrevented());
-// // 	   alert(this.href);
-// // // 	   event.preventDefault();
-
-
-// // 		alert($(this).text());
-// 	});
-
 
 	$(document).ready(function() {
 		$('#example').dataTable({
@@ -119,12 +93,6 @@ $(function() {
 		              "sNext":     "次ページ",
 		              "sLast":     "最終"
 		          }
-// 				 "oPaginate": {
-// 		             "sFirst":    "",
-// 		             "sPrevious": "",
-// 		             "sNext":     "",
-// 		             "sLast":     ""
-// 		         }
 		       }
 		   });
 
@@ -146,35 +114,28 @@ $(function() {
 						timeout: 10000,
 						dataType: "json",
 						success : function(data) {
-// 							var responseJsonData =JSON.parse(data);
-// 							if (responseJsonData.mainList.length > 0 ){
-// 								$('#example').dataTable().fnClearTable();
-// 								for (var i=0; i<responseJsonData.mainList.length; i++){
-// 									  $('#example').dataTable().fnAddData([
-// 			                                      responseJsonData.mainList[i].mainKey,
-// 			                                      responseJsonData.mainList[i].subKey1,
-// 			                                      responseJsonData.mainList[i].subKey2,
-// 			                                      responseJsonData.mainList[i].subKey3,
-// 			                                      responseJsonData.mainList[i].subKey4,
-// 			                                      responseJsonData.mainList[i].subKey5]);
-// 								}
-// 								$('#example').dataTable().fnDraw();
-// 							}else{
-// 								$('#example').dataTable().fnClearTable();
-// 								$('#example').dataTable().fnDraw();
-// 							}
+							alert("success");
+							var responseJsonData =JSON.parse(data);
+							if (responseJsonData.mainList.length > 0 ){
+								for (var i=0; i<responseJsonData.mainList.length; i++){
+									  $('#example').dataTable().fnAddData([
+			                                      responseJsonData.mainList[i].subMainKey,
+			                                      responseJsonData.mainList[i].subSubKey1,
+			                                      responseJsonData.mainList[i].subSubKey2,
+			                                      responseJsonData.mainList[i].subSubKey3,
+			                                      responseJsonData.mainList[i].subSubKey4,
+			                                      responseJsonData.mainList[i].subSubKey5]);
+								}
+								$('#example').dataTable().fnDraw();
+							}
 						},
 					  error: function(XMLHttpRequest, textStatus, errorThrown) {
+						  alert("error");
 				            alert( XMLHttpRequest.status);
 				            alert(  textStatus);
 				            alert( errorThrown.message);
 					  }
 					});
-
-
-
-
-
 
 		            $(this).dialog("close");
 		        }
@@ -188,11 +149,6 @@ $(function() {
 		        }
 		    }],
 			open: function() {
-// 				$("#btn-accept").attr("disabled",true);
-// 				$('#btn-accept').removeClass("ui-button-text-only");
-// 				$('#btn-accept').addClass("footerBtnCss");
-// 				var buttons = $('.ui-dialog-buttonset').children('button');
-// 				buttons.removeClass("ui-button ui-widget ui-state-default ui-state-active ui-state-focus");
 	        }
 		});
 
@@ -206,22 +162,6 @@ $(function() {
 			alert("btnNext");
 		});
 	});
-
-// 	 var total_count = oSettings.fnRecordsTotal();
-//      var columns_in_row = $(this).children('thead').children('tr').children('th').length;
-//      var show_num = oSettings._iDisplayLength;
-//      var tr_count = $(this).children('tbody').children('tr').length;
-//      var missing = show_num - tr_count;
-//      if (show_num < total_count && missing > 0){
-//        for(var i = 0; i < missing; i++){
-//          $(this).append('<tr class="space"><td colspan="' + columns_in_row + '">&nbsp;</td></tr>');
-//        }
-//      }
-//      if (show_num > total_count) {
-//        for(var i = 0; i < (total_count - tr_count); i++) {
-//          $(this).append('<tr class="space"><td colspan="' + columns_in_row + '">&nbsp;</td></tr>');
-//        }
-//      }
 
 		$("#accordion > li > a").click(function(){
 	       var click = $("+ul",this);

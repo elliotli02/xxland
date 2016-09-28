@@ -1,6 +1,5 @@
 package xxland.com.app.control;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +9,8 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
+
+import com.kun.common.web.control.BaseControl;
 
 import xxland.com.common.response.impl.JsonConverter;
 import xxland.com.common.response.impl.JsonResponse;
@@ -20,11 +18,6 @@ import xxland.com.domain.model.KnowLedge;
 import xxland.com.service.IBrainService;
 import xxland.framework.ComConstant;
 import xxland.framework.io.impl.KnowLedgeFileControllerImpl;
-
-import com.kun.common.constant.Constants;
-import com.kun.common.web.control.BaseControl;
-import com.kun.common.web.response.MessageOut;
-import com.kun.common.web.response.Out;
 
 @Controller("brainControl")
 @RequestMapping("/knowledge")
@@ -34,7 +27,7 @@ public class BrainControl extends BaseControl<KnowLedge> {
 	private IBrainService brainService;
 
 	/**
-	 * 登录
+	 * 検索
 	 *
 	 * @author songkun
 	 * @return String
@@ -45,28 +38,9 @@ public class BrainControl extends BaseControl<KnowLedge> {
 	@ResponseBody
 	public String search(KnowLedge knowLedge) {
 
-//			try {
-//				KnowLedge tmp = this.brainService.validate(knowLedge);
-//			} catch (ServiceException e) {
-//				// TODO 自動生成された catch ブロック
-//				e.printStackTrace();
-//			}
-//			if (tmp == null) {// 登録失敗
-////				return MessageOut.LOGIN_FAIL_MESSAGE;
-//				ModelAndView modelAndView = new ModelAndView();
-//				modelAndView.addObject(operater);
-//		        modelAndView.setViewName("/menu.jsp");
-//				return modelAndView;
-//			}
-//			((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(true)
-//					.setAttribute(Constants.USER_INFO, tmp);
-////			return MessageOut.LOGIN_OK_MESSAGE;
-////
 	    JsonResponse jsonResponse = new JsonResponse();
-		ModelAndView modelAndView = new ModelAndView();
 		try {
 //			String errFlg="0";
-           //
 
 			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS+knowLedge.getMainKey()+".txt");
 			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
@@ -76,46 +50,23 @@ public class BrainControl extends BaseControl<KnowLedge> {
 
 			if (knowLedgeList.size()!=0){
 				obj.put("list", knowLedgeList);
-				modelAndView.addObject("knowLedge",obj.getJSONArray("list"));
-			System.out.println(obj.getJSONArray("list"));
+				System.out.println(obj.getJSONArray("list"));
 //				errFlg="1";
 			}
-
-//			modelAndView.addObject("errFlg",errFlg);
-//		    modelAndView.setViewName("/view/brain/knowledge.html");
-
-
 		    jsonResponse.setMainList(knowLedgeList);
 
-System.out.println(JsonConverter.toString(jsonResponse));
+		    System.out.println(JsonConverter.toString(jsonResponse));
 
-
-
+		    return JsonConverter.toString(jsonResponse);
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-//		return MessageOut.LOGIN_FAIL_MESSAGE;
-//		ModelAndView modelAndView = new ModelAndView();
-//		modelAndView.addObject(knowLedge);
-//        modelAndView.setViewName("/menu.jsp");
-//		return modelAndView;
-//		return modelAndView;
-
-//		return null;
-		   try {
-			return JsonConverter.toString(jsonResponse);
-		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-//		return modelAndView;
 		return null;
-
 	}
 
 	/**
-	 * 登录
+	 * 登録
 	 *
 	 * @author songkun
 	 * @return String
@@ -127,76 +78,65 @@ System.out.println(JsonConverter.toString(jsonResponse));
 	public String insert(KnowLedge knowLedge) {
 
 	    JsonResponse jsonResponse = new JsonResponse();
-		ModelAndView modelAndView = new ModelAndView();
 		try {
 //			String errFlg="0";
-           //
 
 			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS+knowLedge.getSubMainKey()+".txt");
-//			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
+
 			knowLedgeFileControllerImpl.AddKnowLedge(knowLedge);
-//			JSONObject obj = new JSONObject();
 
+			JSONObject obj = new JSONObject();
+			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
+			knowLedgeList.add(knowLedge);
+			obj.put("list", knowLedgeList);
+		    jsonResponse.setMainList(knowLedgeList);
 
-//			if (knowLedgeList.size()!=0){
-//				obj.put("list", knowLedgeList);
-//				modelAndView.addObject("knowLedge",obj.getJSONArray("list"));
-//			System.out.println(obj.getJSONArray("list"));
-//				errFlg="1";
-//			}
-
-//			modelAndView.addObject("errFlg",errFlg);
-//		    modelAndView.setViewName("/view/brain/knowledge.html");
-
-
-//		    jsonResponse.setMainList(knowLedgeList);
-
-//System.out.println(JsonConverter.toString(jsonResponse));
-
-
+		    System.out.println(obj.getJSONArray("list"));
+		    return JsonConverter.toString(jsonResponse);
 
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-//		return MessageOut.LOGIN_FAIL_MESSAGE;
-//		ModelAndView modelAndView = new ModelAndView();
-//		modelAndView.addObject(knowLedge);
-//        modelAndView.setViewName("/menu.jsp");
-//		return modelAndView;
-//		return modelAndView;
-
-//		return null;
-//		jsonResponse.setErrFlg("0");
-//		jsonResponse.setMap("knowLedge",knowLedge);
-//		   try {
-//			return JsonConverter.toString(jsonResponse);
-//		} catch (IOException e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
-//		return modelAndView;
 		return null;
 
 	}
 
 	/**
-	 * ログアウト
+	 * 削除
 	 *
 	 * @author songkun
 	 * @return String
-	 * @date 2011-6-1 午後12:49:55
+	 * @date 2011-6-1 午後12:48:45
 	 * @since 2.0.0
 	 */
-	@RequestMapping("/logout.do")
+	@RequestMapping("/delete.do" )
 	@ResponseBody
-	public Out<Object> logout() {
+	public String delete(KnowLedge knowLedge) {
+
+	    JsonResponse jsonResponse = new JsonResponse();
 		try {
-			((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession()
-					.removeAttribute(Constants.USER_INFO);
+//			String errFlg="0";
+
+			KnowLedgeFileControllerImpl knowLedgeFileControllerImpl = new KnowLedgeFileControllerImpl(ComConstant.KNOWLEDGE_PASS+knowLedge.getSubMainKey()+".txt");
+
+			knowLedgeFileControllerImpl.AddKnowLedge(knowLedge);
+
+			JSONObject obj = new JSONObject();
+			List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
+			knowLedgeList.add(knowLedge);
+			obj.put("list", knowLedgeList);
+		    jsonResponse.setMainList(knowLedgeList);
+
+		    System.out.println(obj.getJSONArray("list"));
+		    return JsonConverter.toString(jsonResponse);
+
 		} catch (Exception e) {
-			this.getLogger().error(e);
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
-		return MessageOut.LOGOUT_OK_MESSAGE;
+		return null;
+
 	}
+
 }
