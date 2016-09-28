@@ -181,15 +181,15 @@ public void WriteFile(String addLine, boolean appendFlg) {
 	// TODO 自動生成されたメソッド・スタブ
 	outputFile = new File(mFileAbsolutePath);
 	try {
-		fileOutputStream  = new FileOutputStream(outputFile);
+		fileOutputStream  = new FileOutputStream(outputFile,appendFlg);
 		outputStreamWriter = new OutputStreamWriter(fileOutputStream,"UTF-8");
 		printWriter = new PrintWriter(outputStreamWriter);
 
-		if (appendFlg){
-			printWriter.append(addLine);
-		}else{
+//		if (appendFlg){
 			printWriter.println(addLine);
-		}
+//		}else{
+//			printWriter.println(addLine);
+//		}
 		printWriter.close();
 
 	} catch (FileNotFoundException e) {

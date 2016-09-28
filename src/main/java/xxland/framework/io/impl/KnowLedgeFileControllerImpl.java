@@ -28,7 +28,7 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 //		 String path = "C:\\XXLAND\\knowledge";
 		 FileSearch search = new FileSearch();
 		 File[] files = search.listFiles(ComConstant.KNOWLEDGE_PASS, mainKey+".txt");
-		 KnowLedge knowLedge = new KnowLedge();
+		 KnowLedge knowLedge ;
 		 List<KnowLedge> knowLedgeList = new ArrayList<KnowLedge>();
 
 		  for (int i = 0; i < files.length; i++) {
@@ -41,13 +41,14 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 	          while((str = br.readLine()) != null){
 
 //	        	  str = br.readLine();
-	        	  String[] fruit = str.split(" ", 0);
-	        	  knowLedge.setMainKey(mainKey);
-	        	  knowLedge.setSubKey1(fruit[0]);
-	        	  knowLedge.setSubKey2(fruit[1]);
-	        	  knowLedge.setSubKey3(fruit[2]);
-	        	  knowLedge.setSubKey4(fruit[3]);
-	        	  knowLedge.setSubKey5(fruit[4]);
+	        	  String[] fruit = str.split(",", -1);
+	        	  knowLedge = new KnowLedge();
+	        	  knowLedge.setMainKey(fruit[0]);
+	        	  knowLedge.setSubKey1(fruit[1]);
+	        	  knowLedge.setSubKey2(fruit[2]);
+	        	  knowLedge.setSubKey3(fruit[3]);
+	        	  knowLedge.setSubKey4(fruit[4]);
+	        	  knowLedge.setSubKey5(fruit[5]);
 
 	        	  knowLedgeList.add(knowLedge);
 	          }
@@ -84,9 +85,9 @@ public class KnowLedgeFileControllerImpl extends FileControllerImpl  implements 
 		knowLedge.setSubKey3(addknowLedge.getSubSubKey1());
 		knowLedge.setSubKey4(addknowLedge.getSubSubKey1());
 		knowLedge.setSubKey5(addknowLedge.getSubSubKey1());
-		String newLine = addknowLedge.getSubMainKey() + " " + addknowLedge.getSubSubKey1() + " " +
-				addknowLedge.getSubSubKey2() + " " + addknowLedge.getSubSubKey3() + " " +
-				addknowLedge.getSubSubKey4() + " " + addknowLedge.getSubSubKey5() ;
+		String newLine = addknowLedge.getSubMainKey() + "," + addknowLedge.getSubSubKey1() + "," +
+				addknowLedge.getSubSubKey2() + "," + addknowLedge.getSubSubKey3() + "," +
+				addknowLedge.getSubSubKey4() + "," + addknowLedge.getSubSubKey5() ;
 		String fileName = ComConstant.KNOWLEDGE_PASS + addknowLedge.getSubMainKey() + ".txt";
 
 		WriteFile(newLine,true);
