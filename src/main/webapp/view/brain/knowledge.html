@@ -5,11 +5,13 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="../../common/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../../common/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../../common/js/dataTables.tableTools.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="common/css/demo.css"> -->
 <link rel="stylesheet" type="text/css" href="../../common/css/main.css">
 <link rel="stylesheet" type="text/css" href="../../common/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="../../common/css/jquery-ui-1.10.4.custom.css">
+<link rel="stylesheet" type="text/css" href="../../common/css/dataTables.tableTools.css">
 <!-- <link rel="stylesheet" type="text/css" href="common/css/font-face/typicons.css"> -->
 
 <script type="text/javascript">
@@ -38,7 +40,7 @@ $(function() {
 	});
 
 	$(document).ready(function() {
-		$('#example').dataTable({
+		var mainList1 = $('#example').dataTable({
 		    // 大量データ利用時、「処理中」メッセージを表示するかを設定
 		      bProcessing: true,
 		    // 初期表示の行数設定
@@ -93,74 +95,38 @@ $(function() {
 		              "sNext":     "次ページ",
 		              "sLast":     "最終"
 		          }
-		       }
+		       },
+		       "sDom": 'T<"clear">lfrtip',
+				"oTableTools": {
+					"sRowSelect": "single",
+					"aButtons": []
+				}
+
+
 		   });
 
-		$("#dialog-add").dialog({
-			autoOpen: false,
-			height: 300,
-			width: 350,
-			modal: true,
-			buttons:[{
-		        id:"add-insert",
-		        text: "插入",
-		        class: "footerBtnCss",
-		        click: function() {
-		        	$.ajax({
-						type : "GET",
-						url : "/xxland/knowledge/insert.do", // リクエストURL
-						cache : false,
-			 			data : $(add_form).serialize(),
-						timeout: 10000,
-						dataType: "json",
-						success : function(data) {
-							alert("success");
-							var responseJsonData =JSON.parse(data);
-							if (responseJsonData.mainList.length > 0 ){
-								for (var i=0; i<responseJsonData.mainList.length; i++){
-									  $('#example').dataTable().fnAddData([
-			                                      responseJsonData.mainList[i].subMainKey,
-			                                      responseJsonData.mainList[i].subSubKey1,
-			                                      responseJsonData.mainList[i].subSubKey2,
-			                                      responseJsonData.mainList[i].subSubKey3,
-			                                      responseJsonData.mainList[i].subSubKey4,
-			                                      responseJsonData.mainList[i].subSubKey5]);
-								}
-								$('#example').dataTable().fnDraw();
-							}
-						},
-					  error: function(XMLHttpRequest, textStatus, errorThrown) {
-						  alert("error");
-				            alert( XMLHttpRequest.status);
-				            alert(  textStatus);
-				            alert( errorThrown.message);
-					  }
-					});
+// 		 var oTableTools = new TableTools(mainList1, {
+// 	            // TableToolsの各種機能を利用するためのボタンの設定です。
+// 	            // 行選択機能のみを使う場合必要ないので空白を指定します。
+// 	            aButtons: [],
+// 	            // 行選択タイプを指定します。
+// 	            // multiとsingleを指定できます。
+// 	            sRowSelect: "multi"
+// 	        });
 
-		            $(this).dialog("close");
-		        }
-		    },
-		    {
-		        id:"add-cancel",
-		        text: "返回",
-		        class: "footerBtnCss",
-		        click: function() {
-		            $(this).dialog("close");
-		        }
-		    }],
-			open: function() {
-	        }
-		});
 
-		$("#btnPrevious").click(function(){
-			alert("btnPrevious");
-			oSettings.oApi._fnPageChange(oSettings,"next");
-			fnCallbackDraw(oSettings);
-		});
 
-		$("#btnNext").click(function(){
-			alert("btnNext");
-		});
+
+
+// 		$("#btnPrevious").click(function(){
+// 			alert("btnPrevious");
+// 			oSettings.oApi._fnPageChange(oSettings,"next");
+// 			fnCallbackDraw(oSettings);
+// 		});
+
+// 		$("#btnNext").click(function(){
+// 			alert("btnNext");
+// 		});
 	});
 
 		$("#accordion > li > a").click(function(){
@@ -216,20 +182,155 @@ $(function() {
 		});
 
 	 	$("#btnAdd").click(function() {
+	 		$("#dialog-add").dialog({
+				autoOpen: false,
+				height: 300,
+				width: 350,
+				modal: true,
+				buttons:[{
+			        id:"add-insert",
+			        text: "插入",
+			        class: "footerBtnCss",
+			        click: function() {
+			        	$.ajax({
+							type : "GET",
+							url : "/xxland/knowledge/insert.do", // リクエストURL
+							cache : false,
+				 			data : $(add_form).serialize(),
+							timeout: 10000,
+							dataType: "json",
+							success : function(data) {
+								alert("success");
+								var responseJsonData =JSON.parse(data);
+								if (responseJsonData.mainList.length > 0 ){
+									for (var i=0; i<responseJsonData.mainList.length; i++){
+										  $('#example').dataTable().fnAddData([
+				                                      responseJsonData.mainList[i].subMainKey,
+				                                      responseJsonData.mainList[i].subSubKey1,
+				                                      responseJsonData.mainList[i].subSubKey2,
+				                                      responseJsonData.mainList[i].subSubKey3,
+				                                      responseJsonData.mainList[i].subSubKey4,
+				                                      responseJsonData.mainList[i].subSubKey5]);
+									}
+									$('#example').dataTable().fnDraw();
+								}
+							},
+						  error: function(XMLHttpRequest, textStatus, errorThrown) {
+							  alert("error");
+					            alert( XMLHttpRequest.status);
+					            alert(  textStatus);
+					            alert( errorThrown.message);
+						  }
+						});
+
+			            $(this).dialog("close");
+			        }
+			    },
+			    {
+			        id:"add-cancel",
+			        text: "返回",
+			        class: "footerBtnCss",
+			        click: function() {
+			            $(this).dialog("close");
+			        }
+			    }],
+				open: function() {
+		        }
+			});
 			$("#dialog-add").dialog("open");
 		});
+
+	 	$("#btnUpd").click(function() {
+	 		$("#dialog-add").dialog({
+				autoOpen: false,
+				height: 300,
+				width: 350,
+				modal: true,
+				buttons:[{
+			        id:"add-insert",
+			        text: "修正",
+			        class: "footerBtnCss",
+			        click: function() {
+			        	$.ajax({
+							type : "GET",
+							url : "/xxland/knowledge/insert.do", // リクエストURL
+							cache : false,
+				 			data : $(add_form).serialize(),
+							timeout: 10000,
+							dataType: "json",
+							success : function(data) {
+								alert("success");
+								var responseJsonData =JSON.parse(data);
+								if (responseJsonData.mainList.length > 0 ){
+									for (var i=0; i<responseJsonData.mainList.length; i++){
+										  $('#example').dataTable().fnAddData([
+				                                      responseJsonData.mainList[i].subMainKey,
+				                                      responseJsonData.mainList[i].subSubKey1,
+				                                      responseJsonData.mainList[i].subSubKey2,
+				                                      responseJsonData.mainList[i].subSubKey3,
+				                                      responseJsonData.mainList[i].subSubKey4,
+				                                      responseJsonData.mainList[i].subSubKey5]);
+									}
+									$('#example').dataTable().fnDraw();
+								}
+							},
+						  error: function(XMLHttpRequest, textStatus, errorThrown) {
+							  alert("error");
+					            alert( XMLHttpRequest.status);
+					            alert(  textStatus);
+					            alert( errorThrown.message);
+						  }
+						});
+
+			            $(this).dialog("close");
+			        }
+			    },
+			    {
+			        id:"add-cancel",
+			        text: "返回",
+			        class: "footerBtnCss",
+			        click: function() {
+			            $(this).dialog("close");
+			        }
+			    }],
+				open: function() {
+		        }
+			});
+			$("#dialog-add").dialog("open");
+		});
+	 	$("#btnDel").click(function() {
+	 		var ids = "";
+//             $.each($('#example').dataTable().fnGetData(), function(i, row){
+//                 ids += row.id + ",";
+//             });
+
+            var ids = $.map($('#example').dataTable().rows('.selected').data(), function (item) {
+            	alert(item);
+                return item[0];
+            });
+
+
+            alert(table.rows('.selected').data().length + ' row(s) selected');
+
+
+// 	 		var data = .fnGetData(this);
+// 	 		 console.log(data);
+	 		alert(ids);
+
+		});
+
 	});
-	function ChangeTab(tabname) {
-		// 	    // タブメニュー実装
-		// 	    document.getElementById('tab1').style.display = 'none';
-		// 	    document.getElementById('tab2').style.display = 'none';
-		// 	    document.getElementById('tab3').style.display = 'none';
-		// 	    document.getElementById('tab4').style.display = 'none';
-		// 	    document.getElementById('tab5').style.display = 'none';
-		// 	    // タブメニュー実装
-		// 	    document.getElementById(tabname).style.display = 'block';
-		// 	    document.getElementById(tabname).s
-	}
+// 	function ChangeTab(tabname) {
+// 		// 	    // タブメニュー実装
+// 		// 	    document.getElementById('tab1').style.display = 'none';
+// 		// 	    document.getElementById('tab2').style.display = 'none';
+// 		// 	    document.getElementById('tab3').style.display = 'none';
+// 		// 	    document.getElementById('tab4').style.display = 'none';
+// 		// 	    document.getElementById('tab5').style.display = 'none';
+// 		// 	    // タブメニュー実装
+// 		// 	    document.getElementById(tabname).style.display = 'block';
+// 		// 	    document.getElementById(tabname).s
+// 	}
 
 </script>
 
