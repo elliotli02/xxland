@@ -241,6 +241,16 @@ $(function() {
 		});
 
 	 	$("#btnUpd").click(function() {
+
+
+	 		$("#subMainKey").val("123");
+	 		$("#subSubKey1").val("123");
+	 		$("#subSubKey2").val("123");
+	 		$("#subSubKey3").val("123");
+	 		$("#subSubKey4").val("123");
+	 		$("#subSubKey5").val("123");
+
+
 	 		$("#dialog-add").dialog({
 				autoOpen: false,
 				height: 300,
@@ -452,6 +462,7 @@ $(function() {
 					<input type="text" name="subSubKey4" class="text"/>
 				<label>サブキー５:</label><br>
 					<input type="text" name="subSubKey5" class="text"/>
+				<input type="hidden" name="currentRow" class="text"/>
 			</fieldset>
 
 		</form>

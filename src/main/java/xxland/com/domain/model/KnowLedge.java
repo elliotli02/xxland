@@ -14,6 +14,7 @@ public class KnowLedge{
 
 	private String subKey5;
 
+	private String currentRow;
 
 	private String subMainKey;
 
@@ -121,6 +122,14 @@ public class KnowLedge{
 
 	public void setSubSubKey5(String subSubKey5) {
 		this.subSubKey5 = subSubKey5;
+	}
+
+	public String getCurrentRow() {
+		return currentRow;
+	}
+
+	public void setCurrentRow(String currentRow) {
+		this.currentRow = currentRow;
 	}
 
 }
